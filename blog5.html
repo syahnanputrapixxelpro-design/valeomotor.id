@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RIDING GEAR PREMIUM - VALEOMOTOR.ID</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        background: '#09090B', foreground: '#FAFAFA', muted: '#27272A',
+                        'muted-foreground': '#A1A1AA', accent: '#DFE104', border: '#3F3F46',
+                    },
+                    fontFamily: { sans: ['Space Grotesk', 'sans-serif'], body: ['Inter', 'sans-serif'] },
+                    animation: { marquee: 'marquee 25s linear infinite' },
+                    keyframes: {
+                        marquee: { '0%': { transform: 'translateX(0%)' }, '100%': { transform: 'translateX(-100%)' } }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.29/dist/lenis.min.js"></script>
+
+    <style>
+        /* BASE STYLES */
+        html, body {
+            width: 100%; max-width: 100%; overflow-x: hidden;
+            background-color: #09090B; color: #FAFAFA; cursor: default; margin: 0; padding: 0;
+        }
+        ::selection { background-color: #DFE104; color: black; }
+        
+        .noise-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 40; opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            mix-blend-mode: overlay;
+        }
+        
+        /* Typography for Article */
+        .article-content p { margin-bottom: 1.5rem; line-height: 1.8; color: #d4d4d8; font-family: 'Inter', sans-serif; font-size: 1.1rem; }
+        .article-content h2 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 2rem; color: white; margin-top: 3rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: -0.02em; }
+        .article-content ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.5rem; color: #d4d4d8; }
+        .article-content li { margin-bottom: 0.5rem; }
+        
+        /* Blockquote */
+        .article-quote {
+            border-left: 4px solid #DFE104; padding-left: 2rem; margin: 3rem 0;
+            font-style: italic; font-size: 1.5rem; color: white; font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* FAQ Accordion */
+        details > summary { list-style: none; cursor: pointer; }
+        details > summary::-webkit-details-marker { display: none; }
+        
+        /* Helpers */
+        .hover-invert { transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .hover-invert:hover { background-color: #DFE104; color: #000000; border-color: #DFE104; }
+    </style>
+</head>
+<body class="overflow-x-hidden w-full">
+
+    <div class="noise-overlay"></div>
+
+    <nav class="fixed top-0 left-0 w-full z-[999] bg-background border-b border-border">
+        <div class="px-6 py-4 flex justify-between items-center relative z-[1000] bg-background">
+            <a href="index.html" class="text-2xl font-bold tracking-tighter uppercase font-sans hover:text-accent transition-colors">
+                Valeomotor.id
+            </a>
+
+            <div class="hidden md:flex items-center gap-8">
+                <a href="about.html" class="text-xs font-bold uppercase tracking-[0.2em] hover:text-accent">Tentang Kami</a>
+                <a href="motor.html" class="text-xs font-bold uppercase tracking-[0.2em] hover:text-accent">Motor</a>
+                <a href="gallery.html" class="text-xs font-bold uppercase tracking-[0.2em] hover:text-accent">Gallery</a>
+                <a href="index.html#blog" class="text-xs font-bold uppercase tracking-[0.2em] text-accent relative group">
+                    Blog <span class="absolute -bottom-2 left-0 w-full h-[2px] bg-accent"></span>
+                </a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <a href="index.html#contact" class="hidden md:block uppercase text-xs font-bold tracking-[0.2em] border border-white px-6 py-2 hover:bg-white hover:text-black transition-all">Kontak</a>
+                <button id="btn-toggle" onclick="manualToggle()" class="md:hidden bg-accent text-black uppercase text-xs font-bold tracking-widest px-4 py-3 hover:bg-white transition-colors cursor-pointer border-none">MENU</button>
+            </div>
+        </div>
+        
+        <div id="dropdown-menu" style="display: none; position: absolute; top: 100%; left: 0; width: 100%; background-color: #1a1a1a; border-bottom: 2px solid #333; z-index: 990; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+            <div class="flex flex-col p-8 space-y-6">
+                <a href="about.html" class="text-xl font-bold uppercase tracking-widest text-white hover:text-accent block border-b border-gray-800 pb-2">Tentang Kami</a>
+                <a href="motor.html" class="text-xl font-bold uppercase tracking-widest text-white hover:text-accent block border-b border-gray-800 pb-2">Koleksi Motor</a>
+                <a href="gallery.html" class="text-xl font-bold uppercase tracking-widest text-white hover:text-accent block border-b border-gray-800 pb-2">Gallery</a>
+                <a href="index.html#blog" class="text-xl font-bold uppercase tracking-widest text-accent block border-b border-gray-800 pb-2">Blog & Info</a>
+                <a href="index.html#contact" class="text-xl font-bold uppercase tracking-widest text-accent hover:text-white block mt-2">Hubungi Kami</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative pt-40 pb-20 px-4 bg-background w-full overflow-hidden mt-[70px] border-b border-border">
+        <div class="max-w-4xl mx-auto text-center">
+            <span class="inline-block px-3 py-1 border border-accent text-accent text-xs font-bold uppercase tracking-widest mb-6">Safety First</span>
+            <h1 class="text-5xl md:text-7xl font-bold uppercase tracking-tighter leading-none mb-8 text-white">Pentingnya <br>Riding Gear Premium</h1>
+            
+            <div class="flex justify-center items-center gap-6 text-sm text-muted-foreground border-t border-border pt-6 w-max mx-auto">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-gray-700 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=100&auto=format&fit=crop" class="w-full h-full object-cover">
+                    </div>
+                    <div class="text-left">
+                        <span class="block text-white font-bold">Ditulis Oleh:</span>
+                        <span class="block text-accent">Dr. Andra (Safety Instructor)</span>
+                    </div>
+                </div>
+                <div class="h-8 w-px bg-border"></div>
+                <div>
+                    <span class="block text-white font-bold">Tanggal:</span>
+                    <span>10 Dec 2023</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-20 px-4 bg-background min-h-screen">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
+            
+            <div class="lg:col-span-8">
+                
+                <div class="w-full aspect-video overflow-hidden border border-border mb-12">
+                    <img src="assets/img/motor/CBR1000RR-RSP.webp" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                </div>
+
+                <div class="bg-muted/30 border border-border p-8 mb-12">
+                    <h3 class="text-lg font-bold uppercase tracking-widest text-white mb-4">Daftar Isi</h3>
+                    <ul class="space-y-2 font-body text-muted-foreground list-none pl-0 !mb-0">
+                        <li><a href="#filosofi" class="hover:text-accent transition-colors">1. Filosofi: Dress for The Slide</a></li>
+                        <li><a href="#helm" class="hover:text-accent transition-colors">2. Helm: Bukan Sekadar SNI</a></li>
+                        <li><a href="#material" class="hover:text-accent transition-colors">3. Material Kulit vs Tekstil</a></li>
+                        <li><a href="#faq" class="hover:text-accent transition-colors">4. FAQ (Tips Memilih Gear)</a></li>
+                    </ul>
+                </div>
+
+                <article class="article-content">
+                    <p>
+                        Memiliki motor dengan tenaga 200 HP seperti Ducati Panigale atau BMW S 1000 RR adalah impian. Namun, mengendarai monster tersebut dengan perlengkapan seadanya adalah tindakan bunuh diri.
+                    </p>
+                    
+                    <h2 id="filosofi">1. Filosofi: Dress for The Slide</h2>
+                    <p>
+                        Ada pepatah tua di kalangan bikers veteran: <em>"Dress for the slide, not for the ride."</em> (Berpakaianlah untuk kemungkinan terjatuh, bukan hanya untuk berkendara). Kecelakaan tidak pernah ada di jadwal harian kita, ia datang tiba-tiba.
+                    </p>
+                    <p>
+                        Saat terjadi *high-side* atau *low-side* di kecepatan tinggi, aspal bertindak seperti amplas raksasa. *Riding gear* premium dirancang untuk menjadi "kulit kedua" yang mengorbankan dirinya agar kulit asli Anda tetap utuh.
+                    </p>
+
+                    <div class="article-quote">
+                        "Kepala Anda tidak punya harga diskon. Jangan pertaruhkan aset paling berharga Anda pada helm murah yang hanya mengejar stiker standar minimal."
+                    </div>
+
+                    <h2 id="helm">2. Helm: Bukan Sekadar SNI</h2>
+                    <p>
+                        Di Indonesia, standar SNI adalah wajib. Namun untuk penggunaan *high performance*, kita perlu melihat standar internasional yang lebih ketat seperti <strong>ECE 22.06</strong> (Eropa) atau <strong>SNELL M2020</strong> (USA).
+                    </p>
+                    <p>
+                        Standar ECE 22.06 yang terbaru, misalnya, menguji helm tidak hanya dari benturan langsung, tapi juga dari dampak rotasional (*rotational impact*) yang sering menyebabkan gegar otak. Helm premium seperti Arai, Shoei, atau AGV Pista menggunakan serat karbon dan EPS multi-density untuk menyerap energi benturan secara maksimal.
+                    </p>
+
+                    <figure class="my-12">
+                        <div class="w-full aspect-[16/9] border border-border overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1626549266851-1b0722365922?q=80&w=2670&auto=format&fit=crop" class="w-full h-full object-cover">
+                        </div>
+                        <figcaption class="text-xs text-muted-foreground mt-2 font-body italic text-center">Wearpack balap one-piece adalah standar tertinggi keselamatan.</figcaption>
+                    </figure>
+
+                    <h2 id="material">3. Material Kulit vs Tekstil</h2>
+                    <p>
+                        Untuk ketahanan abrasi maksimal (gesekan dengan aspal), <strong>kulit kanguru</strong> atau sapi *top-grain* masih menjadi raja. Inilah mengapa pembalap MotoGP masih menggunakan *leather suit*.
+                    </p>
+                    <p>
+                        Namun, teknologi tekstil seperti <strong>Cordura</strong> dan <strong>Kevlar</strong> kini semakin canggih. Mereka menawarkan kenyamanan lebih baik untuk harian, ventilasi udara yang superior, namun tetap memiliki ketahanan sobek yang tinggi pada titik-titik krusial (bahu, siku, punggung).
+                    </p>
+                </article>
+
+                <hr class="border-border my-12">
+
+                <div id="faq" class="mb-12">
+                    <h2 class="text-3xl font-bold uppercase text-white mb-8">FAQ: Gear Selection</h2>
+                    
+                    <div class="space-y-4">
+                        <details class="group bg-muted/20 border border-border open:bg-muted/40 transition-all">
+                            <summary class="flex justify-between items-center p-6 font-bold uppercase tracking-wider text-white">
+                                Berapa masa pakai (expiry) helm?
+                                <span class="transition-transform group-open:rotate-180">▼</span>
+                            </summary>
+                            <div class="px-6 pb-6 text-muted-foreground font-body leading-relaxed">
+                                Rata-rata 5 tahun dari tanggal produksi. Meskipun tidak pernah jatuh, styrofoam (EPS) di dalam helm akan mengeras seiring waktu dan kehilangan kemampuan menyerap benturan.
+                            </div>
+                        </details>
+
+                        <details class="group bg-muted/20 border border-border open:bg-muted/40 transition-all">
+                            <summary class="flex justify-between items-center p-6 font-bold uppercase tracking-wider text-white">
+                                Apakah helm mahal pasti aman?
+                                <span class="transition-transform group-open:rotate-180">▼</span>
+                            </summary>
+                            <div class="px-6 pb-6 text-muted-foreground font-body leading-relaxed">
+                                Umumnya ya, karena riset dan materialnya lebih baik. Namun yang terpenting adalah FITMENT (kecocokan ukuran). Helm mahal yang longgar jauh lebih berbahaya daripada helm menengah yang pas di kepala.
+                            </div>
+                        </details>
+
+                        <details class="group bg-muted/20 border border-border open:bg-muted/40 transition-all">
+                            <summary class="flex justify-between items-center p-6 font-bold uppercase tracking-wider text-white">
+                                Apa itu "Armor" Level 1 vs Level 2?
+                                <span class="transition-transform group-open:rotate-180">▼</span>
+                            </summary>
+                            <div class="px-6 pb-6 text-muted-foreground font-body leading-relaxed">
+                                Ini merujuk pada sertifikasi CE untuk pelindung (protector). Level 2 menyerap benturan jauh lebih baik (sisa energi yang diteruskan ke tubuh lebih sedikit) dibanding Level 1. Selalu cari jaket dengan protektor Level 2 di punggung.
+                            </div>
+                        </details>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center justify-between border-t border-b border-border py-8 gap-4">
+                    <span class="text-sm font-bold uppercase tracking-widest text-white">Bagikan Artikel Ini:</span>
+                    <div class="flex gap-4">
+                        <a href="#" class="px-6 py-2 border border-border hover:bg-white hover:text-black transition-all text-xs font-bold uppercase">Instagram</a>
+                        <a href="#" class="px-6 py-2 border border-border hover:bg-blue-600 hover:text-white transition-all text-xs font-bold uppercase">Facebook</a>
+                        <a href="#" class="px-6 py-2 border border-border hover:bg-blue-500 hover:text-white transition-all text-xs font-bold uppercase">LinkedIn</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="lg:col-span-4 relative">
+                <div class="sticky top-32 space-y-8">
+                    
+                    <div class="border border-accent/50 bg-muted/10 p-6 relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 bg-accent text-black text-[10px] font-bold px-2 py-1 uppercase">Track Focus</div>
+                        <h4 class="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-2">Featured Unit</h4>
+                        <h3 class="text-2xl font-bold uppercase text-white mb-4">BMW S 1000 RR</h3>
+                        <div class="aspect-square w-full overflow-hidden border border-border mb-4">
+                            <img src="https://images.unsplash.com/photo-1635073993206-3610991950e3?q=80&w=2670&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <p class="text-sm text-muted-foreground font-body mb-6">
+                            Mesin 207 HP ini membutuhkan *skill* dan *gear* terbaik. Dilengkapi fitur keselamatan aktif canggih seperti ABS Pro dan DTC.
+                        </p>
+                        <div class="flex justify-between items-end mb-6">
+                            <span class="text-xs uppercase text-muted-foreground">Price</span>
+                            <span class="text-xl font-bold text-accent">Rp 770.000.000</span>
+                        </div>
+                        <a href="motor11.html" class="block w-full py-3 bg-accent text-black text-center text-xs font-bold uppercase tracking-widest hover:bg-white transition-colors">
+                            Lihat Detail Motor
+                        </a>
+                    </div>
+
+                    <div class="border border-border p-6 bg-background">
+                        <h4 class="text-lg font-bold uppercase text-white mb-2">Safety Briefing</h4>
+                        <p class="text-xs text-muted-foreground font-body mb-4">Tips keselamatan berkendara dan review perlengkapan terbaru.</p>
+                        <input type="email" placeholder="Email Address" class="w-full bg-muted border border-border px-4 py-3 text-white text-sm mb-2 focus:outline-none focus:border-accent">
+                        <button class="w-full py-3 border border-white text-white hover:bg-white hover:text-black transition-all text-xs font-bold uppercase">Subscribe</button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="py-20 px-4 border-t border-border bg-muted/10">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold uppercase text-white mb-12">Artikel Terkait</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <a href="blog6.html" class="group block">
+                    <div class="aspect-[4/3] overflow-hidden border border-border mb-4">
+                        <img src="https://images.unsplash.com/photo-1615172282427-9a5752d6486d?q=80&w=2670&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h4 class="text-lg font-bold uppercase text-white group-hover:text-accent transition-colors">Perawatan Rantai High-CC</h4>
+                    <span class="text-xs text-muted-foreground uppercase tracking-widest mt-2 block">Maintenance • Nov 28</span>
+                </a>
+                
+                <a href="blog1.html" class="group block">
+                    <div class="aspect-[4/3] overflow-hidden border border-border mb-4">
+                        <img src="https://images.unsplash.com/photo-1626549266851-1b0722365922?q=80&w=2670&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h4 class="text-lg font-bold uppercase text-white group-hover:text-accent transition-colors">V4 Engine: Simfoni Italia</h4>
+                    <span class="text-xs text-muted-foreground uppercase tracking-widest mt-2 block">Review • Jan 10</span>
+                </a>
+
+                <a href="blog4.html" class="group block">
+                    <div class="aspect-[4/3] overflow-hidden border border-border mb-4">
+                        <img src="https://images.unsplash.com/photo-1605753110260-f655da632497?q=80&w=2671&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h4 class="text-lg font-bold uppercase text-white group-hover:text-accent transition-colors">Seni Membangun Cafe Racer</h4>
+                    <span class="text-xs text-muted-foreground uppercase tracking-widest mt-2 block">Custom • Dec 15</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-background text-white py-20 px-6 border-t-2 border-border relative overflow-hidden w-full">
+        <div class="absolute -bottom-10 -left-10 text-[20vw] font-bold text-muted opacity-5 pointer-events-none select-none leading-none z-0">VALEO</div>
+        <div class="max-w-[95vw] mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 relative z-10">
+            <div class="space-y-8"><a href="#" class="block group"><h2 class="text-5xl md:text-7xl font-bold uppercase tracking-tighter group-hover:text-accent transition-colors duration-500">Valeo<br>Motor.id</h2></a><p class="text-lg text-muted-foreground leading-relaxed font-body max-w-sm">Kurator mesin beradrenalin tinggi.</p><div><p class="text-xs uppercase tracking-[0.2em] text-accent mb-1">Established</p><p class="text-lg font-bold">Jakarta, 2024</p></div></div>
+            <div class="space-y-8 md:pl-12 border-l-0 md:border-l border-border/30"><h4 class="text-sm uppercase tracking-[0.2em] text-accent mb-6">Explore</h4><ul class="space-y-4"><li><a href="about.html" class="text-2xl font-bold uppercase tracking-tight hover:text-accent hover:pl-2 transition-all duration-300 block">TENTANG KAMI</a></li><li><a href="motor.html" class="text-2xl font-bold uppercase tracking-tight hover:text-accent hover:pl-2 transition-all duration-300 block">KOLEKSI MOTOR</a></li><li><a href="gallery.html" class="text-2xl font-bold uppercase tracking-tight hover:text-accent hover:pl-2 transition-all duration-300 block">VISUAL GALLERY</a></li><li><a href="index.html#blog" class="text-2xl font-bold uppercase tracking-tight hover:text-accent hover:pl-2 transition-all duration-300 block">BLOG & FAQ</a></li></ul></div>
+            <div class="space-y-10 border-l-0 md:border-l border-border/30 md:pl-12"><div><h4 class="text-sm uppercase tracking-[0.2em] text-accent mb-6">Visit Garage</h4><address class="not-italic text-lg text-muted-foreground space-y-2 font-body"><p class="text-white font-bold text-xl">Jl. Otomotif Future No. 88</p><p>Jakarta Selatan, 12430</p><p class="hover:text-accent cursor-pointer transition-colors block">garage@valeomotor.id</p></address></div><div><h4 class="text-sm uppercase tracking-[0.2em] text-accent mb-6">Follow Us</h4><div class="flex gap-4"><a href="#" class="w-12 h-12 border border-border flex items-center justify-center rounded-full hover:bg-accent hover:text-black hover:scale-110 transition-all duration-300 group"><span class="font-bold text-[10px] group-hover:hidden">IG</span></a><a href="#" class="w-12 h-12 border border-border flex items-center justify-center rounded-full hover:bg-accent hover:text-black hover:scale-110 transition-all duration-300 group"><span class="font-bold text-[10px] group-hover:hidden">WA</span></a></div></div></div>
+        </div>
+    </footer>
+
+    <script>
+        const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), direction: 'vertical', smooth: true });
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
+
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.from("h1", { opacity: 0, y: 50, duration: 1, ease: "power3.out" });
+
+        // MENU TOGGLE
+        function manualToggle() {
+            var menu = document.getElementById("dropdown-menu");
+            var btn = document.getElementById("btn-toggle");
+            if (menu.style.display === "none") {
+                menu.style.display = "block";
+                btn.innerText = "CLOSE";
+                btn.classList.remove("bg-accent", "text-black");
+                btn.classList.add("bg-white", "text-black");
+            } else {
+                menu.style.display = "none";
+                btn.innerText = "MENU";
+                btn.classList.remove("bg-white");
+                btn.classList.add("bg-accent", "text-black");
+            }
+        }
+    </script>
+</body>
+</html>

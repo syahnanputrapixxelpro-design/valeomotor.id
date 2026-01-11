@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HONDA CBR1000RR-R SP - VALEOMOTOR.ID</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        background: '#09090B', foreground: '#FAFAFA', muted: '#27272A',
+                        'muted-foreground': '#A1A1AA', accent: '#DFE104', border: '#3F3F46',
+                    },
+                    fontFamily: { sans: ['Space Grotesk', 'sans-serif'], body: ['Inter', 'sans-serif'] },
+                    animation: { marquee: 'marquee 25s linear infinite' },
+                    keyframes: {
+                        marquee: { '0%': { transform: 'translateX(0%)' }, '100%': { transform: 'translateX(-100%)' } }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.29/dist/lenis.min.js"></script>
+
+    <style>
+        /* BASE STYLES */
+        html,
+        body {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
+            background-color: #09090B;
+            color: #FAFAFA;
+            cursor: default;
+            margin: 0;
+            padding: 0;
+        }
+
+        ::selection {
+            background-color: #DFE104;
+            color: black;
+        }
+
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 40;
+            opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            mix-blend-mode: overlay;
+        }
+
+        .text-clamp-title {
+            font-size: clamp(2.5rem, 5vw, 5rem);
+            line-height: 0.9;
+        }
+
+        /* Button Hover */
+        .btn-primary {
+            background-color: #DFE104;
+            color: black;
+            border: 1px solid #DFE104;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: white;
+            border-color: white;
+        }
+
+        /* Nav & Footer Helpers */
+        .hover-invert {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .hover-invert:hover {
+            background-color: #DFE104;
+            color: #000000;
+            border-color: #DFE104;
+        }
+    </style>
+</head>
+
+<body class="overflow-x-hidden w-full">
+
+    <div class="noise-overlay"></div>
+
+    <nav class="fixed top-0 left-0 w-full z-[999] bg-background border-b border-border">
+        <div class="px-6 py-4 flex justify-between items-center relative z-[1000] bg-background">
+            <a href="index.html"
+                class="text-2xl font-bold tracking-tighter uppercase font-sans hover:text-accent transition-colors">
+                Valeomotor.id
+            </a>
+
+            <div class="hidden md:flex items-center gap-8">
+                <a href="about.html" class="text-xs font-bold uppercase tracking-[0.2em] hover:text-accent">Tentang
+                    Kami</a>
+                <a href="motor.html" class="text-xs font-bold uppercase tracking-[0.2em] text-accent relative group">
+                    Motor <span class="absolute -bottom-2 left-0 w-full h-[2px] bg-accent"></span>
+                </a>
+                <a href="gallery.html"
+                    class="text-xs font-bold uppercase tracking-[0.2em] hover:text-accent">Gallery</a>
+                <a href="blog.html" class="text-xs font-bold uppercase tracking-widest hover:text-accent">Blog</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <a href="index.html#contact"
+                    class="hidden md:block uppercase text-xs font-bold tracking-[0.2em] border border-white px-6 py-2 hover:bg-white hover:text-black transition-all">Kontak</a>
+                <button id="btn-toggle" onclick="manualToggle()"
+                    class="md:hidden bg-accent text-black uppercase text-xs font-bold tracking-widest px-4 py-3 hover:bg-white transition-colors cursor-pointer border-none">
+                    MENU
+                </button>
+            </div>
+        </div>
+
+        <div id="dropdown-menu"
+            style="display: none; position: absolute; top: 100%; left: 0; width: 100%; background-color: #1a1a1a; border-bottom: 2px solid #333; z-index: 990; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+            <div class="flex flex-col p-8 space-y-6">
+                <a href="about.html"
+                    class="text-xl font-bold uppercase tracking-widest text-white hover:text-accent block border-b border-gray-800 pb-2">Tentang
+                    Kami</a>
+                <a href="motor.html"
+                    class="text-xl font-bold uppercase tracking-widest text-accent block border-b border-gray-800 pb-2">Koleksi
+                    Motor</a>
+                <a href="gallery.html"
+                    class="text-xl font-bold uppercase tracking-widest text-white hover:text-accent block border-b border-gray-800 pb-2">Gallery</a>
+                <a href="blog.html"
+                    class="text-xl font-bold uppercase tracking-widest text-white hover:text-accent block border-b border-gray-800 pb-2">Blog
+                    & Info</a>
+                <a href="https://wa.me/62895639068080"
+                    class="text-xl font-bold uppercase tracking-widest text-accent hover:text-white block mt-2">Hubungi
+                    Kami</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-32 pb-20 px-4 bg-background min-h-screen">
+        <div class="max-w-7xl mx-auto">
+
+            <div class="mb-8 text-xs font-bold uppercase tracking-widest text-muted-foreground">
+                <a href="index.html" class="hover:text-accent">Home</a> <span class="mx-2">/</span>
+                <a href="motor.html" class="hover:text-accent">Showroom</a> <span class="mx-2">/</span>
+                <span class="text-white">CBR1000RR-R SP</span>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+
+                <div class="lg:col-span-7 space-y-4">
+                    <div class="w-full aspect-[4/3] overflow-hidden border-2 border-border relative group">
+                        <img src="assets/img/motor/CBR1000RR-RSP.webp"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                        <div
+                            class="absolute top-4 left-4 bg-white text-black px-3 py-1 text-xs font-bold uppercase tracking-widest">
+                            Born To Race</div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="aspect-video overflow-hidden border-2 border-border"><img
+                                src="assets/img/motor/CBR1000RR-RSP.webp"
+                                class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500">
+                        </div>
+                        <div class="aspect-video overflow-hidden border-2 border-border"><img
+                                src="assets/img/motor/CBR1000RR-RSP.webp"
+                                class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 relative">
+                    <div class="sticky top-32">
+                        <div class="mb-8 border-b-2 border-border pb-8">
+                            <span class="text-accent text-sm font-bold uppercase tracking-[0.2em] mb-2 block">Gasoline •
+                                Superbike</span>
+                            <h1 class="text-clamp-title font-bold uppercase tracking-tighter mb-4">CBR1000RR-R
+                                <br>Fireblade SP</h1>
+                            <div class="flex items-end gap-4">
+                                <span class="text-3xl md:text-4xl font-bold text-accent">Rp 1.100.000.000</span>
+                                <span class="text-sm text-muted-foreground uppercase tracking-widest mb-1">On The
+                                    Road</span>
+                            </div>
+                        </div>
+
+                        <div class="mb-8">
+                            <p class="font-body text-muted-foreground text-lg leading-relaxed mb-6">
+                                <strong class="text-white">Pabrikan: Honda Motor Co. (Jepang)</strong><br>
+                                Mesin balap legal jalan raya paling ekstrem yang pernah diciptakan Honda. Dikembangkan
+                                langsung oleh HRC bersama tim MotoGP, Fireblade SP adalah manifestasi dari dominasi
+                                RC213V.
+                            </p>
+                            <p class="font-body text-muted-foreground text-lg leading-relaxed mb-6">
+                                Fitur unggulan meliputi suspensi elektronik Öhlins Smart EC (S-EC) generasi kedua, rem
+                                Brembo Stylema, dan winglet aerodinamis yang memberikan downforce masif pada kecepatan
+                                tinggi.
+                            </p>
+
+                            <div class="grid grid-cols-2 gap-px bg-border border-2 border-border mb-8">
+                                <div class="bg-background p-4">
+                                    <span
+                                        class="block text-xs uppercase tracking-widest text-muted-foreground mb-1">Engine</span>
+                                    <span class="block text-xl font-bold text-white">999.9 cc Inline-4</span>
+                                </div>
+                                <div class="bg-background p-4">
+                                    <span
+                                        class="block text-xs uppercase tracking-widest text-muted-foreground mb-1">Power</span>
+                                    <span class="block text-xl font-bold text-white">217 PS</span>
+                                </div>
+                                <div class="bg-background p-4">
+                                    <span
+                                        class="block text-xs uppercase tracking-widest text-muted-foreground mb-1">Torque</span>
+                                    <span class="block text-xl font-bold text-white">113 Nm</span>
+                                </div>
+                                <div class="bg-background p-4">
+                                    <span
+                                        class="block text-xs uppercase tracking-widest text-muted-foreground mb-1">Weight</span>
+                                    <span class="block text-xl font-bold text-white">201 Kg (Kerb)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col gap-4">
+                            <a href="https://wa.me/62895639068080?text=Halo%20Valeomotor,%20saya%20tertarik%20dengan%20Honda%20CBR1000RR-R%20SP"
+                                target="_blank"
+                                class="btn-primary w-full py-4 text-center uppercase text-sm font-bold tracking-[0.2em]">
+                                Hubungi Agen (WhatsApp)
+                            </a>
+                        </div>
+
+                        <div
+                            class="mt-8 flex items-center gap-4 text-xs text-muted-foreground uppercase tracking-widest">
+                            <span>Guarantee: 2 Years</span>
+                            <span>•</span>
+                            <span>Origin: Kumamoto, JP</span>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-background text-white py-20 px-6 border-t-2 border-border relative overflow-hidden w-full">
+        <div
+            class="absolute -bottom-10 -left-10 text-[20vw] font-bold text-muted opacity-5 pointer-events-none select-none leading-none z-0">
+            VALEO</div>
+        <div class="max-w-[95vw] mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 relative z-10">
+            <div class="space-y-8"><a href="#" class="block group">
+                    <h2
+                        class="text-5xl md:text-7xl font-bold uppercase tracking-tighter group-hover:text-accent transition-colors duration-500">
+                        Valeo<br>Motor.id</h2>
+                </a>
+                <p class="text-lg text-muted-foreground leading-relaxed font-body max-w-sm">Kurator mesin beradrenalin
+                    tinggi.</p>
+                <div>
+                    <p class="text-xs uppercase tracking-[0.2em] text-accent mb-1">Established</p>
+                    <p class="text-lg font-bold">Jakarta, 2024</p>
+                </div>
+            </div>
+            <div class="space-y-8 md:pl-12 border-l-0 md:border-l border-border/30">
+                <h4 class="text-sm uppercase tracking-[0.2em] text-accent mb-6">Explore</h4>
+                <ul class="space-y-4">
+                    <li><a href="about.html"
+                            class="text-2xl font-bold uppercase tracking-tight hover:text-accent hover:pl-2 transition-all duration-300 block">TENTANG
+                            KAMI</a></li>
+                    <li><a href="motor.html"
+                            class="text-2xl font-bold uppercase tracking-tight hover:text-accent hover:pl-2 transition-all duration-300 block">KOLEKSI
+                            MOTOR</a></li>
+                    <li><a href="index.html#gallery"
+                            class="text-2xl font-bold uppercase tracking-tight hover:text-accent hover:pl-2 transition-all duration-300 block">VISUAL
+                            GALLERY</a></li>
+                    <li><a href="index.html#blog"
+                            class="text-2xl font-bold uppercase tracking-tight hover:text-accent hover:pl-2 transition-all duration-300 block">BLOG
+                            & FAQ</a></li>
+                </ul>
+            </div>
+            <div class="space-y-10 border-l-0 md:border-l border-border/30 md:pl-12">
+                <div>
+                    <h4 class="text-sm uppercase tracking-[0.2em] text-accent mb-6">Visit Garage</h4>
+                    <address class="not-italic text-lg text-muted-foreground space-y-2 font-body">
+                        <p class="text-white font-bold text-xl">Jl. Otomotif Future No. 88</p>
+                        <p>Jakarta Selatan, 12430</p>
+                        <p class="hover:text-accent cursor-pointer transition-colors block">garage@valeomotor.id</p>
+                    </address>
+                </div>
+                <div>
+                    <h4 class="text-sm uppercase tracking-[0.2em] text-accent mb-6">Follow Us</h4>
+                    <div class="flex gap-4"><a href="#"
+                            class="w-12 h-12 border border-border flex items-center justify-center rounded-full hover:bg-accent hover:text-black hover:scale-110 transition-all duration-300 group"><span
+                                class="font-bold text-[10px] group-hover:hidden">IG</span></a><a href="#"
+                            class="w-12 h-12 border border-border flex items-center justify-center rounded-full hover:bg-accent hover:text-black hover:scale-110 transition-all duration-300 group"><span
+                                class="font-bold text-[10px] group-hover:hidden">WA</span></a></div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), direction: 'vertical', smooth: true });
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
+
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.from("h1", { opacity: 0, y: 50, duration: 1, ease: "power3.out" });
+
+        // MENU TOGGLE (MANUAL)
+        function manualToggle() {
+            var menu = document.getElementById("dropdown-menu");
+            var btn = document.getElementById("btn-toggle");
+            if (menu.style.display === "none") {
+                menu.style.display = "block";
+                btn.innerText = "CLOSE";
+                btn.classList.remove("bg-accent", "text-black");
+                btn.classList.add("bg-white", "text-black");
+            } else {
+                menu.style.display = "none";
+                btn.innerText = "MENU";
+                btn.classList.remove("bg-white");
+                btn.classList.add("bg-accent", "text-black");
+            }
+        }
+    </script>
+</body>
+
+</html>

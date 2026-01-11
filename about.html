@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABOUT - VALEOMOTOR.ID</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        background: '#09090B', foreground: '#FAFAFA', muted: '#27272A',
+                        'muted-foreground': '#A1A1AA', accent: '#DFE104', border: '#3F3F46',
+                    },
+                    fontFamily: { sans: ['Space Grotesk', 'sans-serif'], body: ['Inter', 'sans-serif'] },
+                    animation: { marquee: 'marquee 25s linear infinite', drop: 'drop 2s infinite' },
+                    keyframes: {
+                        marquee: { '0%': { transform: 'translateX(0%)' }, '100%': { transform: 'translateX(-100%)' } },
+                        drop: { '0%': { top: '-50%' }, '100%': { top: '100%' } }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.29/dist/lenis.min.js"></script>
+
+    <style>
+        /* BASE STYLES */
+        html, body {
+            width: 100%; max-width: 100%; overflow-x: hidden;
+            background-color: #09090B; color: #FAFAFA; cursor: default; margin: 0; padding: 0;
+        }
+        ::selection { background-color: #DFE104; color: black; }
+        
+        .noise-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 40; opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            mix-blend-mode: overlay;
+        }
+        
+        .text-clamp-hero { font-size: clamp(3rem, 12vw, 18rem); line-height: 0.8; }
+        .hover-invert { transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .hover-invert:hover { background-color: #DFE104; color: #000000; border-color: #DFE104; }
+        .hover-invert:hover .child-text { color: #000000; }
+        .hover-invert:hover .text-muted-foreground { color: rgba(0,0,0,0.7); }
+    </style>
+</head>
+<body class="overflow-x-hidden w-full">
+
+    <div class="noise-overlay"></div>
+
+    <nav class="fixed top-0 left-0 w-full z-[999] bg-background border-b border-border">
+        
+        <div class="px-6 py-4 flex justify-between items-center relative z-[1000] bg-background">
+            <a href="index.html" class="text-2xl font-bold tracking-tighter uppercase font-sans hover:text-accent transition-colors">
+                Valeomotor.id
+            </a>
+
+            <div class="hidden md:flex items-center gap-8">
+                <a href="about.html" class="text-xs font-bold uppercase tracking-[0.2em] text-accent relative group">
+                    Tentang Kami <span class="absolute -bottom-2 left-0 w-full h-[2px] bg-accent"></span>
+                </a>
+                <a href="motor.html" class="text-xs font-bold uppercase tracking-[0.2em] hover:text-accent">Motor</a>
+                <a href="gallery.html" class="text-xs font-bold uppercase tracking-[0.2em] hover:text-accent">Gallery</a>
+                <a href="blog.html" class="text-xs font-bold uppercase tracking-widest hover:text-accent">Blog</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <a href="https://wa.me/62895639068080" class="hidden md:block uppercase text-xs font-bold tracking-[0.2em] border border-white px-6 py-2 hover:bg-white hover:text-black transition-all">Kontak</a>
+                
+                <button id="btn-toggle" onclick="manualToggle()" class="md:hidden bg-accent text-black uppercase text-xs font-bold tracking-widest px-4 py-3 hover:bg-white transition-colors cursor-pointer border-none">
+                    MENU
+                </button>
+            </div>
+        </div>
+
+        <div id="dropdown-menu" style="display: none; position: absolute; top: 100%; left: 0; width: 100%; background-color: #1a1a1a; border-bottom: 2px solid #333; z-index: 990; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+            <div class="flex flex-col p-8 space-y-6">
+                <a href="about.html" onclick="manualToggle()" class="text-xl font-bold uppercase tracking-widest text-white hover:text-accent block border-b border-gray-800 pb-2">Tentang Kami</a>
+                <a href="motor.html" onclick="manualToggle()" class="text-xl font-bold uppercase tracking-widest text-white hover:text-accent block border-b border-gray-800 pb-2">Koleksi Motor</a>
+                <a href="gallery.html" onclick="manualToggle()" class="text-xl font-bold uppercase tracking-widest text-white hover:text-accent block border-b border-gray-800 pb-2">Gallery</a>
+                <a href="blog.html" onclick="manualToggle()" class="text-xl font-bold uppercase tracking-widest text-white hover:text-accent block border-b border-gray-800 pb-2">Blog & Info</a>
+                <a href="https://wa.me/62895639068080" onclick="manualToggle()" class="text-xl font-bold uppercase tracking-widest text-accent hover:text-white block mt-2">Hubungi Kami</a>
+            </div>
+        </div>
+
+    </nav>
+
+    <header class="relative pt-40 pb-20 px-4 border-b-2 border-border bg-background min-h-[60vh] flex flex-col justify-center w-full overflow-hidden mt-[70px]">
+        <div class="max-w-7xl mx-auto w-full">
+            <h1 class="text-clamp-hero font-bold uppercase tracking-tighter leading-none reveal-text break-words">
+                Pure <br><span class="text-accent">Adrenaline.</span>
+            </h1>
+            <div class="mt-8 grid grid-cols-1 md:grid-cols-12 gap-8 border-t border-muted pt-8">
+                <div class="md:col-span-4">
+                    <p class="uppercase tracking-widest text-sm text-accent">Est. 2024 • Jakarta</p>
+                </div>
+                <div class="md:col-span-8">
+                    <p class="font-body text-xl md:text-3xl leading-tight reveal-text text-muted-foreground">
+                        Kami tidak peduli apakah itu meminum bensin atau memakan listrik. Kami peduli pada <span class="text-white font-bold">jiwa mesinnya.</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-0 border-b-2 border-border flex flex-col md:flex-row w-full overflow-hidden">
+        <div class="w-full md:w-1/2 h-[50vh] md:h-auto relative overflow-hidden border-b-2 md:border-b-0 md:border-r-2 border-border">
+            <img src="assets/img/motor/ApriliaRSV4Factory2.webp" class="absolute inset-0 w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 hover:scale-105">
+            <div class="absolute inset-0 bg-black/20"></div>
+        </div>
+        <div class="w-full md:w-1/2 p-8 md:p-20 flex flex-col justify-center bg-background">
+            <h2 class="text-6xl font-bold uppercase tracking-tighter mb-8">The <span class="text-accent">Cult</span></h2>
+            <div class="space-y-8 font-body text-lg text-muted-foreground">
+                <p>Showroom motor biasa hanya menjual alat transportasi. Kami menjual kebebasan.</p>
+                <p>Di garasi Valeo, Superbike Italia parkir bersebelahan dengan Cafe Racer custom dan Motor Listrik torsi tinggi.</p>
+            </div>
+            <div class="mt-12 grid grid-cols-2 gap-8">
+                <div><span class="block text-4xl md:text-5xl font-bold text-white mb-2">3</span><span class="text-xs uppercase tracking-widest text-muted-foreground">Categories</span></div>
+                <div><span class="block text-4xl md:text-5xl font-bold text-white mb-2">100%</span><span class="text-xs uppercase tracking-widest text-muted-foreground">Quality</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 md:py-32 px-4 bg-background border-b-2 border-border w-full overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-6xl font-bold uppercase tracking-tighter mb-20 text-center">The <span class="text-accent">Crew</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-border border-2 border-border">
+                <div class="group bg-background relative aspect-[3/4] overflow-hidden hover-invert cursor-crosshair p-6 flex flex-col justify-end">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2574&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 opacity-60 group-hover:opacity-100">
+                    <div class="relative z-10 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                        <h3 class="text-2xl md:text-3xl font-bold uppercase tracking-tighter text-white group-hover:text-accent">Raka Dimas</h3>
+                        <p class="text-sm uppercase tracking-widest text-muted-foreground bg-black/50 inline-block px-2 mt-2">Founder</p>
+                    </div>
+                </div>
+                <div class="group bg-background relative aspect-[3/4] overflow-hidden hover-invert cursor-crosshair p-6 flex flex-col justify-end">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=2574&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 opacity-60 group-hover:opacity-100">
+                    <div class="relative z-10 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                        <h3 class="text-2xl md:text-3xl font-bold uppercase tracking-tighter text-white group-hover:text-accent">Sarah Vilo</h3>
+                        <p class="text-sm uppercase tracking-widest text-muted-foreground bg-black/50 inline-block px-2 mt-2">Legal</p>
+                    </div>
+                </div>
+                <div class="group bg-background relative aspect-[3/4] overflow-hidden hover-invert cursor-crosshair p-6 flex flex-col justify-end">
+                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=2574&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 opacity-60 group-hover:opacity-100">
+                    <div class="relative z-10 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                        <h3 class="text-2xl md:text-3xl font-bold uppercase tracking-tighter text-white group-hover:text-accent">Erik Tohir</h3>
+                        <p class="text-sm uppercase tracking-widest text-muted-foreground bg-black/50 inline-block px-2 mt-2">Mechanic</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="bg-muted text-muted-foreground py-12 border-b-2 border-border w-full max-w-full overflow-hidden relative">
+        <div class="flex whitespace-nowrap overflow-hidden w-full">
+            <div class="animate-marquee inline-block">
+                <span class="text-6xl md:text-8xl font-bold uppercase tracking-tighter px-8 opacity-20">
+                    GASOLINE • ELECTRIC • CUSTOM • SPEED • STYLE • GASOLINE • ELECTRIC • CUSTOM • SPEED • STYLE •
+                </span>
+            </div>
+            <div class="animate-marquee inline-block absolute top-12 left-0">
+                <span class="text-6xl md:text-8xl font-bold uppercase tracking-tighter px-8 opacity-20">
+                    GASOLINE • ELECTRIC • CUSTOM • SPEED • STYLE • GASOLINE • ELECTRIC • CUSTOM • SPEED • STYLE •
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <section class="py-32 px-4 md:px-12 bg-background flex flex-col items-center justify-center text-center w-full overflow-hidden">
+        <h2 class="text-5xl md:text-8xl font-bold uppercase tracking-tighter mb-8">Visit <span class="text-accent">Garage.</span></h2>
+        <p class="max-w-xl text-xl text-muted-foreground mb-12">
+            Lihat koleksi kami secara langsung. Cium aroma bensin atau rasakan torsi listriknya.
+        </p>
+        <a href="index.html#contact" class="uppercase text-sm font-bold tracking-[0.2em] bg-accent text-black px-12 py-4 hover:scale-105 transition-transform duration-300">
+            Hubungi Kami
+        </a>
+    </section>
+
+    <footer class="bg-background text-white py-20 px-6 border-t-2 border-border relative overflow-hidden w-full">
+        <div class="absolute -bottom-10 -left-10 text-[20vw] font-bold text-muted opacity-5 pointer-events-none select-none leading-none z-0">VALEO</div>
+        
+        <div class="max-w-[95vw] mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 relative z-10">
+            <div class="space-y-8">
+                <a href="#" class="block group"><h2 class="text-5xl md:text-7xl font-bold uppercase tracking-tighter group-hover:text-accent transition-colors duration-500">Valeo<br>Motor.id</h2></a>
+                <p class="text-lg text-muted-foreground leading-relaxed font-body max-w-sm">Kurator mesin beradrenalin tinggi. Mempertemukan pengendara sejati dengan mahakarya kejuruteraan, bensin maupun listrik.</p>
+                <div><p class="text-xs uppercase tracking-[0.2em] text-accent mb-1">Established</p><p class="text-lg font-bold">Jakarta, 2024</p></div>
+            </div>
+            <div class="space-y-8 md:pl-12 border-l-0 md:border-l border-border/30"> 
+                <h4 class="text-sm uppercase tracking-[0.2em] text-accent mb-6">Explore</h4>
+                <ul class="space-y-4">
+                    <li><a href="about.html" class="text-2xl font-bold uppercase tracking-tight hover:text-accent hover:pl-2 transition-all duration-300 block">TENTANG KAMI</a></li>
+                    <li><a href="index.html#products" class="text-2xl font-bold uppercase tracking-tight hover:text-accent hover:pl-2 transition-all duration-300 block">KOLEKSI MOTOR</a></li>
+                    <li><a href="index.html#gallery" class="text-2xl font-bold uppercase tracking-tight hover:text-accent hover:pl-2 transition-all duration-300 block">VISUAL GALLERY</a></li>
+                    <li><a href="index.html#blog" class="text-2xl font-bold uppercase tracking-tight hover:text-accent hover:pl-2 transition-all duration-300 block">BLOG & FAQ</a></li>
+                </ul>
+            </div>
+            <div class="space-y-10 border-l-0 md:border-l border-border/30 md:pl-12">
+                <div>
+                    <h4 class="text-sm uppercase tracking-[0.2em] text-accent mb-6">Visit Garage</h4>
+                    <address class="not-italic text-lg text-muted-foreground space-y-2 font-body"><p class="text-white font-bold text-xl">Jl. Otomotif Future No. 88</p><p>Jakarta Selatan, 12430</p><p class="hover:text-accent cursor-pointer transition-colors mt-4 block">+62 812 3456 7890</p><p class="hover:text-accent cursor-pointer transition-colors block">garage@valeomotor.id</p></address>
+                </div>
+                <div>
+                    <h4 class="text-sm uppercase tracking-[0.2em] text-accent mb-6">Follow Us</h4>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-12 h-12 border border-border flex items-center justify-center rounded-full hover:bg-accent hover:text-black hover:scale-110 transition-all duration-300 group"><span class="font-bold text-[10px] group-hover:hidden">IG</span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden group-hover:block"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg></a>
+                        <a href="#" class="w-12 h-12 border border-border flex items-center justify-center rounded-full hover:bg-accent hover:text-black hover:scale-110 transition-all duration-300 group"><span class="font-bold text-[10px] group-hover:hidden">WA</span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden group-hover:block"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></a>
+                        <a href="#" class="w-12 h-12 border border-border flex items-center justify-center rounded-full hover:bg-accent hover:text-black hover:scale-110 transition-all duration-300 group"><span class="font-bold text-[10px] group-hover:hidden">YT</span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden group-hover:block"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-[95vw] mx-auto mt-24 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground relative z-10"><p>&copy; 2026 Valeomotor. All rights reserved.</p><p class="uppercase tracking-widest hidden md:block opacity-50">Built for Speed / Designed for Soul</p></div>
+    </footer>
+
+    <script>
+        const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), direction: 'vertical', smooth: true });
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
+
+        gsap.registerPlugin(ScrollTrigger);
+        document.querySelectorAll('.reveal-text').forEach(el => {
+            gsap.from(el, { scrollTrigger: { trigger: el, start: "top 85%" }, y: 50, opacity: 0, duration: 1, ease: "power3.out" });
+        });
+
+        // FUNGSI TOGGLE MANUAL (ANTI GAGAL)
+        function manualToggle() {
+            var menu = document.getElementById("dropdown-menu");
+            var btn = document.getElementById("btn-toggle");
+            
+            if (menu.style.display === "none") {
+                menu.style.display = "block";
+                btn.innerText = "CLOSE";
+                btn.classList.remove("bg-accent", "text-black");
+                btn.classList.add("bg-white", "text-black");
+            } else {
+                menu.style.display = "none";
+                btn.innerText = "MENU";
+                btn.classList.remove("bg-white");
+                btn.classList.add("bg-accent", "text-black");
+            }
+        }
+    </script>
+</body>
+</html>

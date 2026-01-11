@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHOWROOM - VALEOMOTOR.ID</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        background: '#09090B', foreground: '#FAFAFA', muted: '#27272A',
+                        'muted-foreground': '#A1A1AA', accent: '#DFE104', border: '#3F3F46',
+                    },
+                    fontFamily: { sans: ['Space Grotesk', 'sans-serif'], body: ['Inter', 'sans-serif'] },
+                    animation: { marquee: 'marquee 25s linear infinite' },
+                    keyframes: {
+                        marquee: { '0%': { transform: 'translateX(0%)' }, '100%': { transform: 'translateX(-100%)' } }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.29/dist/lenis.min.js"></script>
+
+    <style>
+        /* BASE STYLES */
+        html, body {
+            width: 100%; max-width: 100%; overflow-x: hidden;
+            background-color: #09090B; color: #FAFAFA; cursor: default; margin: 0; padding: 0;
+        }
+        ::selection { background-color: #DFE104; color: black; }
+        
+        .text-clamp-hero { font-size: clamp(3rem, 10vw, 12rem); line-height: 0.8; }
+        
+        .card-hover { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .card-hover:hover { transform: translateY(-10px); border-color: #DFE104; }
+        .card-hover:hover img { filter: grayscale(0%); transform: scale(1.05); }
+        .card-hover:hover .card-title { color: #DFE104; }
+        
+        .page-btn { cursor: pointer; border: 1px solid #3F3F46; padding: 10px 20px; font-weight: bold; transition: all 0.2s; }
+        .page-btn:hover { background-color: white; color: black; }
+        .page-btn.active { background-color: #DFE104; color: black; border-color: #DFE104; }
+        .page-btn:disabled { opacity: 0.3; cursor: not-allowed; background: transparent; color: white; border-color: #3F3F46; }
+
+        .filter-btn.active { background-color: #DFE104; color: black; border-color: #DFE104; }
+
+        /* Utility untuk menyembunyikan elemen tanpa merusak layout grid */
+        .hidden-item { display: none !important; }
+    </style>
+</head>
+<body class="overflow-x-hidden w-full">
+
+    <nav class="fixed top-0 left-0 w-full z-[999] bg-background border-b border-border">
+        <div class="px-6 py-4 flex justify-between items-center relative z-[1000] bg-background">
+            <a href="index.html" class="text-2xl font-bold tracking-tighter uppercase font-sans hover:text-accent transition-colors">
+                Valeomotor.id
+            </a>
+
+            <div class="hidden md:flex items-center gap-8">
+                <a href="about.html" class="text-xs font-bold uppercase tracking-[0.2em] hover:text-accent">Tentang Kami</a>
+                <a href="motor.html" class="text-xs font-bold uppercase tracking-[0.2em] text-accent relative group">
+                    Motor <span class="absolute -bottom-2 left-0 w-full h-[2px] bg-accent"></span>
+                </a>
+                <a href="gallery.html" class="text-xs font-bold uppercase tracking-[0.2em] hover:text-accent">Gallery</a>
+                <a href="blog.html" class="text-xs font-bold uppercase tracking-widest hover:text-accent">Blog</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <a href="https://wa.me/62895639068080" class="hidden md:block uppercase text-xs font-bold tracking-[0.2em] border border-white px-6 py-2 hover:bg-white hover:text-black transition-all">Kontak</a>
+                <button id="btn-toggle" onclick="manualToggle()" class="md:hidden bg-accent text-black uppercase text-xs font-bold tracking-widest px-4 py-3 hover:bg-white transition-colors cursor-pointer border-none">
+                    MENU
+                </button>
+            </div>
+        </div>
+
+        <div id="dropdown-menu" style="display: none; position: absolute; top: 100%; left: 0; width: 100%; background-color: #1a1a1a; border-bottom: 2px solid #333; z-index: 990; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+            <div class="flex flex-col p-8 space-y-6">
+                <a href="about.html" class="text-xl font-bold uppercase tracking-widest text-white hover:text-accent block border-b border-gray-800 pb-2">Tentang Kami</a>
+                <a href="motor.html" class="text-xl font-bold uppercase tracking-widest text-accent block border-b border-gray-800 pb-2">Koleksi Motor</a>
+                <a href="gallery.html" class="text-xl font-bold uppercase tracking-widest text-white hover:text-accent block border-b border-gray-800 pb-2">Gallery</a>
+                <a href="blog.html" class="text-xl font-bold uppercase tracking-widest text-white hover:text-accent block border-b border-gray-800 pb-2">Blog & Info</a>
+                <a href="https://wa.me/62895639068080" class="text-xl font-bold uppercase tracking-widest text-accent hover:text-white block mt-2">Hubungi Kami</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative pt-40 pb-12 px-4 border-b-2 border-border bg-background w-full overflow-hidden mt-[70px]">
+        <div class="max-w-7xl mx-auto w-full text-center md:text-left">
+            <h1 class="text-clamp-hero font-bold uppercase tracking-tighter leading-none reveal-text">
+                The <br><span class="text-accent">Arsenal.</span>
+            </h1>
+            <p class="font-body text-xl text-muted-foreground mt-6 max-w-2xl reveal-text">
+                Koleksi lengkap mesin tempur jalanan. Pilih senjatamu.
+            </p>
+        </div>
+    </header>
+
+    <div class="sticky top-[80px] z-40 bg-background/90 backdrop-blur-md border-b-2 border-border py-4 px-4 overflow-x-auto">
+        <div class="max-w-7xl mx-auto flex gap-4 md:justify-start min-w-max">
+            <button onclick="filterSelection('all')" class="filter-btn active text-xs font-bold uppercase tracking-widest border border-border px-6 py-3 hover:bg-white hover:text-black transition-all">All Units</button>
+            <button onclick="filterSelection('gasoline')" class="filter-btn text-xs font-bold uppercase tracking-widest border border-border px-6 py-3 hover:bg-white hover:text-black transition-all">Gasoline</button>
+            <button onclick="filterSelection('electric')" class="filter-btn text-xs font-bold uppercase tracking-widest border border-border px-6 py-3 hover:bg-white hover:text-black transition-all">Electric</button>
+            <button onclick="filterSelection('custom')" class="filter-btn text-xs font-bold uppercase tracking-widest border border-border px-6 py-3 hover:bg-white hover:text-black transition-all">Classic/Custom</button>
+        </div>
+    </div>
+
+    <section class="py-20 px-4 bg-background border-b-2 border-border w-full min-h-screen">
+        <div class="max-w-7xl mx-auto">
+            
+            <div id="showroom-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="filter-item gasoline card-hover group border-2 border-border bg-muted/20 relative overflow-hidden">
+                    <div class="aspect-[4/3] overflow-hidden border-b-2 border-border"><img src="assets/img/motor/ducatipanigalev4s.webp"></div>
+                    <div class="p-6">
+                        <span class="text-xs font-bold uppercase bg-white text-black px-2 py-1 mb-2 inline-block">Gasoline</span>
+                        <span class="text-accent font-bold text-lg block mb-2 float-right">Rp 450jt+</span>
+                        <h3 class="text-2xl font-bold uppercase text-white mb-2 card-title">Ducati Panigale V4 S</h3>
+                        <p class="text-muted-foreground text-sm mb-6">1103cc • 214 HP • King of Track</p>
+                        <a href="motor1.html" class="block w-full text-center border border-white py-3 text-xs font-bold uppercase tracking-widest hover:bg-accent hover:text-black">View Details</a>
+                    </div>
+                </div>
+
+                <div class="filter-item electric card-hover group border-2 border-border bg-muted/20 relative overflow-hidden">
+                    <div class="aspect-[4/3] overflow-hidden border-b-2 border-border"><img src="assets/img/motor/zerofxe.webp" class="w-full h-full object-cover grayscale transition-transform duration-700"></div>
+                    <div class="p-6">
+                        <span class="text-xs font-bold uppercase bg-accent text-black px-2 py-1 mb-2 inline-block">Electric</span>
+                        <span class="text-accent font-bold text-lg block mb-2 float-right">Rp 130jt</span>
+                        <h3 class="text-2xl font-bold uppercase text-white mb-2 card-title">Zero FXE</h3>
+                        <p class="text-muted-foreground text-sm mb-6">7.2 kWh • 161km Range • Supermoto</p>
+                        <a href="motor2.html" class="block w-full text-center border border-white py-3 text-xs font-bold uppercase tracking-widest hover:bg-accent hover:text-black">View Details</a>
+                    </div>
+                </div>
+
+                <div class="filter-item custom card-hover group border-2 border-border bg-muted/20 relative overflow-hidden">
+                    <div class="aspect-[4/3] overflow-hidden border-b-2 border-border"><img src="assets/img/motor/triumphthuxtonrs.webp" class="w-full h-full object-cover grayscale transition-transform duration-700"></div>
+                    <div class="p-6">
+                        <span class="text-xs font-bold uppercase bg-gray-500 text-white px-2 py-1 mb-2 inline-block">Classic</span>
+                        <span class="text-accent font-bold text-lg block mb-2 float-right">Rp 550jt</span>
+                        <h3 class="text-2xl font-bold uppercase text-white mb-2 card-title">Triumph Thruxton RS</h3>
+                        <p class="text-muted-foreground text-sm mb-6">1200cc • Cafe Racer • Factory Custom</p>
+                        <a href="motor3.html" class="block w-full text-center border border-white py-3 text-xs font-bold uppercase tracking-widest hover:bg-accent hover:text-black">View Details</a>
+                    </div>
+                </div>
+
+                <div class="filter-item gasoline card-hover group border-2 border-border bg-muted/20 relative overflow-hidden">
+                    <div class="aspect-[4/3] overflow-hidden border-b-2 border-border"><img src="assets/img/motor/yamahayzfr1m.webp" class="w-full h-full object-cover grayscale transition-transform duration-700"></div>
+                    <div class="p-6">
+                        <span class="text-xs font-bold uppercase bg-white text-black px-2 py-1 mb-2 inline-block">Gasoline</span>
+                        <span class="text-accent font-bold text-lg block mb-2 float-right">Rp 825jt</span>
+                        <h3 class="text-2xl font-bold uppercase text-white mb-2 card-title">Yamaha YZF-R1M</h3>
+                        <p class="text-muted-foreground text-sm mb-6">998cc • Carbon Body • MotoGP Tech</p>
+                        <a href="motor4.html" class="block w-full text-center border border-white py-3 text-xs font-bold uppercase tracking-widest hover:bg-accent hover:text-black">View Details</a>
+                    </div>
+                </div>
+
+                <div class="filter-item electric card-hover group border-2 border-border bg-muted/20 relative overflow-hidden">
+                    <div class="aspect-[4/3] overflow-hidden border-b-2 border-border"><img src="assets/img/motor/BMWCE04.webp" class="w-full h-full object-cover grayscale transition-transform duration-700"></div>
+                    <div class="p-6">
+                        <span class="text-xs font-bold uppercase bg-accent text-black px-2 py-1 mb-2 inline-block">Electric</span>
+                        <span class="text-accent font-bold text-lg block mb-2 float-right">Rp 380jt</span>
+                        <h3 class="text-2xl font-bold uppercase text-white mb-2 card-title">BMW CE 04</h3>
+                        <p class="text-muted-foreground text-sm mb-6">42 HP • Futuristic Design • Urban</p>
+                        <a href="motor5.html" class="block w-full text-center border border-white py-3 text-xs font-bold uppercase tracking-widest hover:bg-accent hover:text-black">View Details</a>
+                    </div>
+                </div>
+
+                <div class="filter-item custom card-hover group border-2 border-border bg-muted/20 relative overflow-hidden">
+                    <div class="aspect-[4/3] overflow-hidden border-b-2 border-border"><img src="assets/img/motor/RoyalEnfieldGT650.webp" class="w-full h-full object-cover grayscale transition-transform duration-700"></div>
+                    <div class="p-6">
+                        <span class="text-xs font-bold uppercase bg-gray-500 text-white px-2 py-1 mb-2 inline-block">Classic</span>
+                        <span class="text-accent font-bold text-lg block mb-2 float-right">Rp 216jt</span>
+                        <h3 class="text-2xl font-bold uppercase text-white mb-2 card-title">Royal Enfield GT 650</h3>
+                        <p class="text-muted-foreground text-sm mb-6">648cc • Twin Cylinder • Retro Style</p>
+                        <a href="motor6.html" class="block w-full text-center border border-white py-3 text-xs font-bold uppercase tracking-widest hover:bg-accent hover:text-black">View Details</a>
+                    </div>
+                </div>
+
+                <div class="filter-item gasoline card-hover group border-2 border-border bg-muted/20 relative overflow-hidden">
+                    <div class="aspect-[4/3] overflow-hidden border-b-2 border-border"><img src="assets/img/motor/KawasakiNinjaH2.webp" class="w-full h-full object-cover grayscale transition-transform duration-700"></div>
+                    <div class="p-6">
+                        <span class="text-xs font-bold uppercase bg-white text-black px-2 py-1 mb-2 inline-block">Gasoline</span>
+                        <span class="text-accent font-bold text-lg block mb-2 float-right">Rp 830jt</span>
+                        <h3 class="text-2xl font-bold uppercase text-white mb-2 card-title">Kawasaki Ninja H2</h3>
+                        <p class="text-muted-foreground text-sm mb-6">998cc • Supercharged • 228 HP</p>
+                        <a href="motor7.html" class="block w-full text-center border border-white py-3 text-xs font-bold uppercase tracking-widest hover:bg-accent hover:text-black">View Details</a>
+                    </div>
+                </div>
+
+                <div class="filter-item electric card-hover group border-2 border-border bg-muted/20 relative overflow-hidden">
+                    <div class="aspect-[4/3] overflow-hidden border-b-2 border-border"><img src="assets/img/motor/LiveWireOne.webp" class="w-full h-full object-cover grayscale transition-transform duration-700"></div>
+                    <div class="p-6">
+                        <span class="text-xs font-bold uppercase bg-accent text-black px-2 py-1 mb-2 inline-block">Electric</span>
+                        <span class="text-accent font-bold text-lg block mb-2 float-right">Rp 450jt</span>
+                        <h3 class="text-2xl font-bold uppercase text-white mb-2 card-title">LiveWire One</h3>
+                        <p class="text-muted-foreground text-sm mb-6">100 HP • 235km Range • H-D Soul</p>
+                        <a href="motor8.html" class="block w-full text-center border border-white py-3 text-xs font-bold uppercase tracking-widest hover:bg-accent hover:text-black">View Details</a>
+                    </div>
+                </div>
+
+                <div class="filter-item electric card-hover group border-2 border-border bg-muted/20 relative overflow-hidden">
+                    <div class="aspect-[4/3] overflow-hidden border-b-2 border-border"><img src="assets/img/motor/VespaElettrica.webp" class="w-full h-full object-cover grayscale transition-transform duration-700"></div>
+                    <div class="p-6">
+                        <span class="text-xs font-bold uppercase bg-accent text-black px-2 py-1 mb-2 inline-block">Electric</span>
+                        <span class="text-accent font-bold text-lg block mb-2 float-right">Rp 198jt</span>
+                        <h3 class="text-2xl font-bold uppercase text-white mb-2 card-title">Vespa Elettrica</h3>
+                        <p class="text-muted-foreground text-sm mb-6">4 kW • 100km Range • Italian Icon</p>
+                        <a href="motor9.html" class="block w-full text-center border border-white py-3 text-xs font-bold uppercase tracking-widest hover:bg-accent hover:text-black">View Details</a>
+                    </div>
+                </div>
+
+                <div class="filter-item gasoline card-hover group border-2 border-border bg-muted/20 relative overflow-hidden">
+                    <div class="aspect-[4/3] overflow-hidden border-b-2 border-border"><img src="assets/img/motor/CBR1000RR-RSP.webp" class="w-full h-full object-cover grayscale transition-transform duration-700"></div>
+                    <div class="p-6">
+                        <span class="text-xs font-bold uppercase bg-white text-black px-2 py-1 mb-2 inline-block">Gasoline</span>
+                        <span class="text-accent font-bold text-lg block mb-2 float-right">Rp 1.1M</span>
+                        <h3 class="text-2xl font-bold uppercase text-white mb-2 card-title">CBR1000RR-R SP</h3>
+                        <p class="text-muted-foreground text-sm mb-6">217 HP • Fireblade • Race Ready</p>
+                        <a href="motor10.html" class="block w-full text-center border border-white py-3 text-xs font-bold uppercase tracking-widest hover:bg-accent hover:text-black">View Details</a>
+                    </div>
+                </div>
+
+                <div class="filter-item gasoline card-hover group border-2 border-border bg-muted/20 relative overflow-hidden">
+                    <div class="aspect-[4/3] overflow-hidden border-b-2 border-border"><img src="assets/img/motor/BMWS1000RR.webp" class="w-full h-full object-cover grayscale transition-transform duration-700"></div>
+                    <div class="p-6">
+                        <span class="text-xs font-bold uppercase bg-white text-black px-2 py-1 mb-2 inline-block">Gasoline</span>
+                        <span class="text-accent font-bold text-lg block mb-2 float-right">Rp 770jt</span>
+                        <h3 class="text-2xl font-bold uppercase text-white mb-2 card-title">BMW S 1000 RR</h3>
+                        <p class="text-muted-foreground text-sm mb-6">207 HP • ShiftCam • German Tech</p>
+                        <a href="motor11.html" class="block w-full text-center border border-white py-3 text-xs font-bold uppercase tracking-widest hover:bg-accent hover:text-black">View Details</a>
+                    </div>
+                </div>
+
+                <div class="filter-item gasoline card-hover group border-2 border-border bg-muted/20 relative overflow-hidden">
+                    <div class="aspect-[4/3] overflow-hidden border-b-2 border-border"><img src="assets/img/motor/ApriliaRSV4Factory.webp" class="w-full h-full object-cover grayscale transition-transform duration-700"></div>
+                    <div class="p-6">
+                        <span class="text-xs font-bold uppercase bg-white text-black px-2 py-1 mb-2 inline-block">Gasoline</span>
+                        <span class="text-accent font-bold text-lg block mb-2 float-right">Rp 820jt</span>
+                        <h3 class="text-2xl font-bold uppercase text-white mb-2 card-title">Aprilia RSV4 Factory</h3>
+                        <p class="text-muted-foreground text-sm mb-6">1099cc • V4 Engine • 217 HP</p>
+                        <a href="motor12.html" class="block w-full text-center border border-white py-3 text-xs font-bold uppercase tracking-widest hover:bg-accent hover:text-black">View Details</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="pagination-controls" class="flex justify-center items-center gap-4 mt-20">
+                <button id="btn-prev" onclick="changePage(1)" class="page-btn text-white uppercase text-xs tracking-widest" disabled>Previous</button>
+                <button id="btn-1" onclick="changePage(1)" class="page-btn active text-xs">1</button>
+                <button id="btn-2" onclick="changePage(2)" class="page-btn text-white text-xs">2</button>
+                <button id="btn-next" onclick="changePage(2)" class="page-btn text-white uppercase text-xs tracking-widest">Next</button>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="bg-background text-white py-20 px-6 border-t-2 border-border relative overflow-hidden w-full">
+        <div class="absolute -bottom-10 -left-10 text-[20vw] font-bold text-muted opacity-5 pointer-events-none select-none leading-none z-0">VALEO</div>
+        <div class="max-w-[95vw] mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 relative z-10">
+            <div class="space-y-8"><a href="#" class="block group"><h2 class="text-5xl md:text-7xl font-bold uppercase tracking-tighter group-hover:text-accent transition-colors duration-500">Valeo<br>Motor.id</h2></a><p class="text-lg text-muted-foreground leading-relaxed font-body max-w-sm">Kurator mesin beradrenalin tinggi.</p><div><p class="text-xs uppercase tracking-[0.2em] text-accent mb-1">Established</p><p class="text-lg font-bold">Jakarta, 2024</p></div></div>
+            <div class="space-y-8 md:pl-12 border-l-0 md:border-l border-border/30"><h4 class="text-sm uppercase tracking-[0.2em] text-accent mb-6">Explore</h4><ul class="space-y-4"><li><a href="about.html" class="text-2xl font-bold uppercase tracking-tight hover:text-accent hover:pl-2 transition-all duration-300 block">TENTANG KAMI</a></li><li><a href="motor.html" class="text-2xl font-bold uppercase tracking-tight hover:text-accent hover:pl-2 transition-all duration-300 block">KOLEKSI MOTOR</a></li><li><a href="index.html#gallery" class="text-2xl font-bold uppercase tracking-tight hover:text-accent hover:pl-2 transition-all duration-300 block">VISUAL GALLERY</a></li><li><a href="index.html#blog" class="text-2xl font-bold uppercase tracking-tight hover:text-accent hover:pl-2 transition-all duration-300 block">BLOG & FAQ</a></li></ul></div>
+            <div class="space-y-10 border-l-0 md:border-l border-border/30 md:pl-12"><div><h4 class="text-sm uppercase tracking-[0.2em] text-accent mb-6">Visit Garage</h4><address class="not-italic text-lg text-muted-foreground space-y-2 font-body"><p class="text-white font-bold text-xl">Jl. Otomotif Future No. 88</p><p>Jakarta Selatan, 12430</p><p class="hover:text-accent cursor-pointer transition-colors block">garage@valeomotor.id</p></address></div><div><h4 class="text-sm uppercase tracking-[0.2em] text-accent mb-6">Follow Us</h4><div class="flex gap-4"><a href="#" class="w-12 h-12 border border-border flex items-center justify-center rounded-full hover:bg-accent hover:text-black hover:scale-110 transition-all duration-300 group"><span class="font-bold text-[10px] group-hover:hidden">IG</span></a><a href="#" class="w-12 h-12 border border-border flex items-center justify-center rounded-full hover:bg-accent hover:text-black hover:scale-110 transition-all duration-300 group"><span class="font-bold text-[10px] group-hover:hidden">WA</span></a></div></div></div>
+        </div>
+    </footer>
+
+    <script>
+        const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), direction: 'vertical', smooth: true });
+        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
+
+        gsap.registerPlugin(ScrollTrigger);
+        document.querySelectorAll('.reveal-text').forEach(el => {
+            gsap.from(el, { scrollTrigger: { trigger: el, start: "top 85%" }, y: 50, opacity: 0, duration: 1, ease: "power3.out" });
+        });
+
+        // MENU TOGGLE
+        function manualToggle() {
+            var menu = document.getElementById("dropdown-menu");
+            var btn = document.getElementById("btn-toggle");
+            if (menu.style.display === "none") {
+                menu.style.display = "block";
+                btn.innerText = "CLOSE";
+                btn.classList.remove("bg-accent", "text-black");
+                btn.classList.add("bg-white", "text-black");
+            } else {
+                menu.style.display = "none";
+                btn.innerText = "MENU";
+                btn.classList.remove("bg-white");
+                btn.classList.add("bg-accent", "text-black");
+            }
+        }
+
+        // --- NEW SINGLE-GRID LOGIC ---
+        // Variabel global untuk state halaman saat ini
+        let currentPage = 1;
+        const itemsPerPage = 6;
+
+        // Jalankan saat load pertama kali
+        document.addEventListener("DOMContentLoaded", () => {
+            filterSelection('all');
+        });
+
+        function changePage(pageNum) {
+            currentPage = pageNum;
+            const allItems = Array.from(document.querySelectorAll('.filter-item'));
+            
+            // Logic Halaman:
+            // Page 1: Index 0 - 5
+            // Page 2: Index 6 - 11
+            const startIndex = (pageNum - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+
+            allItems.forEach((item, index) => {
+                // Hanya atur display jika kita sedang dalam mode 'all'
+                // (Karena fungsi filterSelection('all') memanggil changePage)
+                
+                // Reset animasi
+                item.style.opacity = '1'; 
+                item.style.transform = 'translateY(0)';
+
+                if (index >= startIndex && index < endIndex) {
+                    item.classList.remove('hidden-item');
+                    // Simple Entrance Animation
+                    gsap.fromTo(item, {opacity: 0, y: 20}, {opacity: 1, y: 0, duration: 0.4, delay: (index % itemsPerPage) * 0.1});
+                } else {
+                    item.classList.add('hidden-item');
+                }
+            });
+
+            // Update Tombol Pagination
+            updatePaginationUI(pageNum);
+            
+            // Scroll sedikit ke atas agar user sadar halaman berubah
+            window.scrollTo({ top: 400, behavior: 'smooth' });
+        }
+
+        function updatePaginationUI(pageNum) {
+            const btnPrev = document.getElementById('btn-prev');
+            const btnNext = document.getElementById('btn-next');
+            const btn1 = document.getElementById('btn-1');
+            const btn2 = document.getElementById('btn-2');
+
+            // Reset Styles
+            [btn1, btn2].forEach(btn => {
+                btn.classList.remove('active');
+                btn.classList.add('text-white');
+            });
+
+            if (pageNum === 1) {
+                btn1.classList.add('active');
+                btn1.classList.remove('text-white');
+                btnPrev.disabled = true;
+                btnNext.disabled = false;
+            } else {
+                btn2.classList.add('active');
+                btn2.classList.remove('text-white');
+                btnPrev.disabled = false;
+                btnNext.disabled = true;
+            }
+        }
+
+        function filterSelection(category) {
+            const allItems = document.querySelectorAll('.filter-item');
+            const pagination = document.getElementById('pagination-controls');
+            const btns = document.querySelectorAll('.filter-btn');
+
+            // Set Active Button Style
+            btns.forEach(btn => {
+                btn.classList.remove('active');
+                if(btn.innerText.toLowerCase().includes(category) || (category === 'all' && btn.innerText.includes('All'))) {
+                    btn.classList.add('active');
+                }
+            });
+
+            if (category === 'all') {
+                // MODE: PAGINATION (Tampilkan tombol, jalankan logika halaman)
+                pagination.style.display = 'flex';
+                // Reset ke halaman 1
+                changePage(1); 
+            } else {
+                // MODE: FILTER (Sembunyikan pagination, tampilkan semua yg cocok)
+                pagination.style.display = 'none';
+
+                let delayCounter = 0;
+                allItems.forEach(item => {
+                    if (item.classList.contains(category)) {
+                        item.classList.remove('hidden-item');
+                        // Animation agar smooth saat filter
+                        gsap.fromTo(item, {opacity: 0, y: 20}, {opacity: 1, y: 0, duration: 0.4, delay: delayCounter * 0.05});
+                        delayCounter++;
+                    } else {
+                        item.classList.add('hidden-item');
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>
