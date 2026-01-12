@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VISUAL GALLERY - VALEOMOTOR.ID</title>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -34,43 +37,128 @@
 
     <style>
         /* BASE STYLES */
-        html, body {
-            width: 100%; max-width: 100%; overflow-x: hidden;
-            background-color: #09090B; color: #FAFAFA; cursor: default; margin: 0; padding: 0;
+        html,
+        body {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
+            background-color: #09090B;
+            color: #FAFAFA;
+            cursor: default;
+            margin: 0;
+            padding: 0;
         }
-        ::selection { background-color: #DFE104; color: black; }
-        
-        .text-clamp-hero { font-size: clamp(3rem, 10vw, 11rem); line-height: 0.8; }
-        
-        /* Gallery Hover Effects - Clean Zoom & Color Reveal */
-        .gallery-item { 
-            position: relative; overflow: hidden; 
+
+        ::selection {
+            background-color: #DFE104;
+            color: black;
+        }
+
+        .text-clamp-hero {
+            font-size: clamp(3rem, 10vw, 11rem);
+            line-height: 0.8;
+        }
+
+        /* Gallery Hover Effects */
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
             border: 1px solid #3F3F46;
         }
+
         .gallery-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 60%);
-            opacity: 0; transition: opacity 0.4s ease;
-            display: flex; flex-direction: column; justify-content: flex-end; padding: 24px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 24px;
         }
-        .gallery-item:hover .gallery-overlay { opacity: 1; }
-        .gallery-item img { 
-            width: 100%; height: 100%; object-fit: cover;
-            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease; 
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
             filter: grayscale(100%) contrast(110%);
         }
-        .gallery-item:hover img { transform: scale(1.05); filter: grayscale(0%) contrast(100%); }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+            filter: grayscale(0%) contrast(100%);
+        }
 
         /* Helpers */
-        .hover-invert { transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
-        .hover-invert:hover { background-color: #DFE104; color: #000000; border-color: #DFE104; }
+        .hover-invert {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .hover-invert:hover {
+            background-color: #DFE104;
+            color: #000000;
+            border-color: #DFE104;
+        }
+
+        /* FLOATING BUTTONS STYLES */
+        #fixed-buttons-container {
+            position: fixed !important;
+            bottom: 30px !important;
+            right: 30px !important;
+            z-index: 999999999 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 12px !important;
+            pointer-events: none !important;
+        }
+
+        .btn-universal {
+            pointer-events: auto !important;
+            width: 58px !important;
+            height: 58px !important;
+            border-radius: 50% !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5) !important;
+            cursor: pointer !important;
+            border: none !important;
+            transition: all 0.2s ease !important;
+        }
+
+        #back-top-trigger {
+            background-color: #DFE104 !important;
+            color: #000 !important;
+            display: none;
+        }
+
+        .wa-trigger {
+            background-color: #25D366 !important;
+            text-decoration: none !important;
+        }
+
+        .btn-universal:hover {
+            transform: translateY(-5px) !important;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.6) !important;
+        }
     </style>
 </head>
+
 <body class="overflow-x-hidden w-full">
 
     <nav class="fixed top-0 left-0 w-full z-[999] bg-background border-b border-border">
         <div class="px-6 py-4 flex justify-between items-center relative z-[1000] bg-background">
-            <a href="index.html" class="text-2xl font-bold tracking-tighter uppercase font-sans hover:text-accent transition-colors">
+            <a href="index.html"
+                class="text-2xl font-bold tracking-tighter uppercase font-sans hover:text-accent transition-colors">
                 Valeomotor.id
             </a>
 
@@ -84,25 +172,33 @@
             </div>
 
             <div class="flex items-center gap-4">
-                <a href="https://wa.me/62895639068080" class="hidden md:block uppercase text-xs font-bold tracking-[0.2em] border border-white px-6 py-2 hover:bg-white hover:text-black transition-all">Kontak</a>
-                <button id="btn-toggle" onclick="manualToggle()" class="md:hidden bg-accent text-black uppercase text-xs font-bold tracking-widest px-4 py-3 hover:bg-white transition-colors cursor-pointer border-none">
+                <a href="https://wa.me/62895639068080"
+                    class="hidden md:block uppercase text-xs font-bold tracking-[0.2em] border border-white px-6 py-2 hover:bg-white hover:text-black transition-all">Kontak</a>
+                <button id="btn-toggle" onclick="manualToggle()"
+                    class="md:hidden bg-accent text-black uppercase text-xs font-bold tracking-widest px-4 py-3 hover:bg-white transition-colors cursor-pointer border-none">
                     MENU
                 </button>
             </div>
         </div>
 
-        <div id="dropdown-menu" style="display: none; position: absolute; top: 100%; left: 0; width: 100%; background-color: #1a1a1a; border-bottom: 2px solid #333; z-index: 990; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+        <div id="dropdown-menu"
+            style="display: none; position: absolute; top: 100%; left: 0; width: 100%; background-color: #1a1a1a; border-bottom: 2px solid #333; z-index: 990; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
             <div class="flex flex-col p-8 space-y-6">
-                <a href="about.html" class="text-xl font-bold uppercase tracking-widest text-white hover:text-accent block border-b border-gray-800 pb-2">Tentang Kami</a>
-                <a href="motor.html" class="text-xl font-bold uppercase tracking-widest text-white hover:text-accent block border-b border-gray-800 pb-2">Koleksi Motor</a>
-                <a href="gallery.html" class="text-xl font-bold uppercase tracking-widest text-accent block border-b border-gray-800 pb-2">Gallery</a>
-                <a href="blog.html" class="text-xl font-bold uppercase tracking-widest text-white hover:text-accent block border-b border-gray-800 pb-2">Blog & Info</a>
-                <a href="https://wa.me/62895639068080" class="text-xl font-bold uppercase tracking-widest text-accent hover:text-white block mt-2">Hubungi Kami</a>
+                <a href="about.html" onclick="manualToggle()"
+                    class="text-xl font-bold uppercase tracking-widest text-white hover:text-accent block border-b border-gray-800 pb-2">Tentang Kami</a>
+                <a href="motor.html" onclick="manualToggle()"
+                    class="text-xl font-bold uppercase tracking-widest text-white hover:text-accent block border-b border-gray-800 pb-2">Koleksi Motor</a>
+                <a href="gallery.html" onclick="manualToggle()"
+                    class="text-xl font-bold uppercase tracking-widest text-accent block border-b border-gray-800 pb-2">Gallery</a>
+                <a href="blog.html" onclick="manualToggle()"
+                    class="text-xl font-bold uppercase tracking-widest text-white hover:text-accent block border-b border-gray-800 pb-2">Blog & Info</a>
+                <a href="https://wa.me/62895639068080" onclick="manualToggle()"
+                    class="text-xl font-bold uppercase tracking-widest text-accent hover:text-white block mt-2">Hubungi Kami</a>
             </div>
         </div>
     </nav>
 
-    <header class="relative pt-40 pb-12 px-4 bg-background w-full overflow-hidden mt-[70px]">
+    <header id="hero" class="relative pt-24 md:pt-40 pb-12 px-4 bg-background w-full overflow-hidden mt-[65px] md:mt-[70px]">
         <div class="max-w-7xl mx-auto w-full text-center md:text-left">
             <h1 class="text-clamp-hero font-bold uppercase tracking-tighter leading-none reveal-text">
                 Visual <br><span class="text-accent">Archive.</span>
@@ -131,11 +227,9 @@
 
     <section class="py-20 px-4 bg-background min-h-screen">
         <div class="max-w-7xl mx-auto">
-            
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 auto-rows-[250px] gap-4">
-                
                 <div class="gallery-item col-span-1 md:col-span-2 row-span-2 group">
-                    <img src="assets/img/motor/ApriliaRSV4Factory2.webp">
+                    <img src="assets/img/motor/ApriliaRSV4Factory2.webp" alt="Archive 1">
                     <div class="gallery-overlay">
                         <span class="text-accent text-xs font-bold uppercase tracking-widest mb-1">Showroom</span>
                         <h3 class="text-white text-3xl font-bold uppercase">The Masterpiece</h3>
@@ -143,7 +237,7 @@
                 </div>
 
                 <div class="gallery-item col-span-1 md:col-span-2 row-span-1 group">
-                    <img src="assets/img/motor/h2rhighight.webp" class="object-center">
+                    <img src="assets/img/motor/h2rhighight.webp" class="object-center" alt="Archive 2">
                     <div class="gallery-overlay">
                         <span class="text-accent text-xs font-bold uppercase tracking-widest mb-1">Detail</span>
                         <h3 class="text-white text-xl font-bold uppercase">Headlight View</h3>
@@ -151,7 +245,7 @@
                 </div>
 
                 <div class="gallery-item col-span-1 md:col-span-2 row-span-1 group">
-                    <img src="assets/img/motor/bmwecohighlight.webp" class="object-center">
+                    <img src="assets/img/motor/bmwecohighlight.webp" class="object-center" alt="Archive 3">
                     <div class="gallery-overlay">
                         <span class="text-accent text-xs font-bold uppercase tracking-widest mb-1">Custom</span>
                         <h3 class="text-white text-xl font-bold uppercase">Cafe Racer Build</h3>
@@ -159,7 +253,7 @@
                 </div>
 
                 <div class="gallery-item col-span-1 row-span-2 group">
-                    <img src="assets/img/motor/livewirehighlight.webp">
+                    <img src="assets/img/motor/livewirehighlight.webp" alt="Archive 4">
                     <div class="gallery-overlay">
                         <span class="text-accent text-xs font-bold uppercase tracking-widest mb-1">Engineering</span>
                         <h3 class="text-white text-xl font-bold uppercase">Engine Bay</h3>
@@ -167,7 +261,7 @@
                 </div>
 
                 <div class="gallery-item col-span-1 row-span-1 group">
-                    <img src="assets/img/motor/triumphhighlight.webp">
+                    <img src="assets/img/motor/triumphhighlight.webp" alt="Archive 5">
                     <div class="gallery-overlay">
                         <span class="text-accent text-xs font-bold uppercase tracking-widest mb-1">Lifestyle</span>
                         <h3 class="text-white text-lg font-bold uppercase">Urban</h3>
@@ -175,7 +269,7 @@
                 </div>
 
                 <div class="gallery-item col-span-1 row-span-1 group">
-                    <img src="assets/img/motor/royalhighliight.webp">
+                    <img src="assets/img/motor/royalhighliight.webp" alt="Archive 6">
                     <div class="gallery-overlay">
                         <span class="text-accent text-xs font-bold uppercase tracking-widest mb-1">Material</span>
                         <h3 class="text-white text-lg font-bold uppercase">Carbon</h3>
@@ -183,7 +277,7 @@
                 </div>
 
                 <div class="gallery-item col-span-1 row-span-1 group">
-                    <img src="assets/img/motor/zerohighlight.webp">
+                    <img src="assets/img/motor/zerohighlight.webp" alt="Archive 7">
                     <div class="gallery-overlay">
                         <span class="text-accent text-xs font-bold uppercase tracking-widest mb-1">Studio</span>
                         <h3 class="text-white text-lg font-bold uppercase">Profile</h3>
@@ -191,7 +285,7 @@
                 </div>
 
                 <div class="gallery-item col-span-1 md:col-span-2 row-span-1 group">
-                    <img src="assets/img/motor/yamahahighlight.webp" class="object-center">
+                    <img src="assets/img/motor/yamahahighlight.webp" class="object-center" alt="Archive 8">
                     <div class="gallery-overlay">
                         <span class="text-accent text-xs font-bold uppercase tracking-widest mb-1">Event</span>
                         <h3 class="text-white text-xl font-bold uppercase">Community Ride</h3>
@@ -199,59 +293,156 @@
                 </div>
 
                 <div class="gallery-item col-span-1 row-span-1 group">
-                    <img src="assets/img/motor/panigalehighlight.webp">
+                    <img src="assets/img/motor/panigalehighlight.webp" alt="Archive 9">
                     <div class="gallery-overlay">
                         <span class="text-accent text-xs font-bold uppercase tracking-widest mb-1">Gear</span>
                         <h3 class="text-white text-lg font-bold uppercase">Safety</h3>
                     </div>
                 </div>
-
             </div>
-
         </div>
     </section>
 
     <footer class="bg-background text-white py-20 px-6 border-t-2 border-border relative overflow-hidden w-full">
-        <div class="absolute -bottom-10 -left-10 text-[20vw] font-bold text-muted opacity-5 pointer-events-none select-none leading-none z-0">VALEO</div>
+        <div
+            class="absolute -bottom-10 -left-10 text-[20vw] font-bold text-muted opacity-5 pointer-events-none select-none leading-none z-0">
+            VALEO</div>
+
         <div class="max-w-[95vw] mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 relative z-10">
-            <div class="space-y-8"><a href="#" class="block group"><h2 class="text-5xl md:text-7xl font-bold uppercase tracking-tighter group-hover:text-accent transition-colors duration-500">Valeo<br>Motor.id</h2></a><p class="text-lg text-muted-foreground leading-relaxed font-body max-w-sm">Kurator mesin beradrenalin tinggi.</p><div><p class="text-xs uppercase tracking-[0.2em] text-accent mb-1">Established</p><p class="text-lg font-bold">Jakarta, 2024</p></div></div>
-            <div class="space-y-8 md:pl-12 border-l-0 md:border-l border-border/30"><h4 class="text-sm uppercase tracking-[0.2em] text-accent mb-6">Explore</h4><ul class="space-y-4"><li><a href="about.html" class="text-2xl font-bold uppercase tracking-tight hover:text-accent hover:pl-2 transition-all duration-300 block">TENTANG KAMI</a></li><li><a href="motor.html" class="text-2xl font-bold uppercase tracking-tight hover:text-accent hover:pl-2 transition-all duration-300 block">KOLEKSI MOTOR</a></li><li><a href="gallery.html" class="text-2xl font-bold uppercase tracking-tight hover:text-accent hover:pl-2 transition-all duration-300 block">VISUAL GALLERY</a></li><li><a href="index.html#blog" class="text-2xl font-bold uppercase tracking-tight hover:text-accent hover:pl-2 transition-all duration-300 block">BLOG & FAQ</a></li></ul></div>
-            <div class="space-y-10 border-l-0 md:border-l border-border/30 md:pl-12"><div><h4 class="text-sm uppercase tracking-[0.2em] text-accent mb-6">Visit Garage</h4><address class="not-italic text-lg text-muted-foreground space-y-2 font-body"><p class="text-white font-bold text-xl">Jl. Otomotif Future No. 88</p><p>Jakarta Selatan, 12430</p><p class="hover:text-accent cursor-pointer transition-colors block">garage@valeomotor.id</p></address></div><div><h4 class="text-sm uppercase tracking-[0.2em] text-accent mb-6">Follow Us</h4><div class="flex gap-4"><a href="#" class="w-12 h-12 border border-border flex items-center justify-center rounded-full hover:bg-accent hover:text-black hover:scale-110 transition-all duration-300 group"><span class="font-bold text-[10px] group-hover:hidden">IG</span></a><a href="#" class="w-12 h-12 border border-border flex items-center justify-center rounded-full hover:bg-accent hover:text-black hover:scale-110 transition-all duration-300 group"><span class="font-bold text-[10px] group-hover:hidden">WA</span></a></div></div></div>
+            <div class="space-y-8">
+                <a href="#" class="block group">
+                    <h2
+                        class="text-5xl md:text-7xl font-bold uppercase tracking-tighter group-hover:text-accent transition-colors duration-500">
+                        Valeo<br>Motor.id</h2>
+                </a>
+                <p class="text-lg text-muted-foreground leading-relaxed font-body max-w-sm">
+                    Kurator mesin beradrenalin tinggi. Mempertemukan pengendara sejati dengan mahakarya kejuruteraan,
+                    bensin maupun listrik.
+                </p>
+                <div>
+                    <p class="text-xs uppercase tracking-[0.2em] text-accent mb-1">Established</p>
+                    <p class="text-lg font-bold">Jakarta, 2024</p>
+                </div>
+            </div>
+
+            <div class="space-y-8 md:pl-12 border-l-0 md:border-l border-border/30">
+                <h4 class="text-sm uppercase tracking-[0.2em] text-accent mb-6">Explore</h4>
+                <ul class="space-y-4">
+                    <li><a href="about.html"
+                            class="text-2xl font-bold uppercase tracking-tight hover:text-accent hover:pl-2 transition-all duration-300 block">TENTANG
+                            KAMI</a></li>
+                    <li><a href="motor.html"
+                            class="text-2xl font-bold uppercase tracking-tight hover:text-accent hover:pl-2 transition-all duration-300 block">KOLEKSI
+                            MOTOR</a></li>
+                    <li><a href="gallery.html"
+                            class="text-2xl font-bold uppercase tracking-tight hover:text-accent hover:pl-2 transition-all duration-300 block">VISUAL
+                            GALLERY</a></li>
+                    <li><a href="blog.html"
+                            class="text-2xl font-bold uppercase tracking-tight hover:text-accent hover:pl-2 transition-all duration-300 block">BLOG
+                            & FAQ</a></li>
+                </ul>
+            </div>
+
+            <div class="space-y-10 border-l-0 md:border-l border-border/30 md:pl-12">
+                <div>
+                    <h4 class="text-sm uppercase tracking-[0.2em] text-accent mb-6">Visit Garage</h4>
+                    <address class="not-italic text-lg text-muted-foreground space-y-2 font-body">
+                        <p class="text-white font-bold text-xl">Jl. Otomotif Future No. 88</p>
+                        <p>Jakarta Selatan, 12430</p>
+                        <p class="hover:text-accent cursor-pointer transition-colors mt-4 block">+62 812 3456 7890</p>
+                        <p class="hover:text-accent cursor-pointer transition-colors block">garage@valeomotor.id</p>
+                    </address>
+                </div>
+                <div>
+                    <h4 class="text-sm uppercase tracking-[0.2em] text-accent mb-6">Follow Us</h4>
+                    <div class="flex gap-4">
+                        <a href="https://www.instagram.com/"
+                            class="w-12 h-12 border border-border flex items-center justify-center rounded-full hover:bg-accent hover:text-black hover:scale-110 transition-all duration-300 group">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                            </svg>
+                        </a>
+                        <a href="https://wa.me/62895639068080"
+                            class="w-12 h-12 border border-border flex items-center justify-center rounded-full hover:bg-[#25D366] hover:text-white hover:scale-110 transition-all duration-300 group">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.facebook.com/"
+                            class="w-12 h-12 border border-border flex items-center justify-center rounded-full hover:bg-[#1877F2] hover:text-white hover:scale-110 transition-all duration-300 group">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="max-w-[95vw] mx-auto mt-24 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground relative z-10">
+            <p>&copy; 2026 Valeomotor. All rights reserved.</p>
+            <p class="uppercase tracking-widest hidden md:block opacity-50">Built for Speed / Designed for Soul</p>
         </div>
     </footer>
 
+    <div id="fixed-buttons-container"><a href="#hero">
+        <button id="back-top-trigger" class="btn-universal shadow-2xl">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+        </button></a>
+        <a href="https://wa.me/62895639068080" target="_blank" class="btn-universal wa-trigger shadow-2xl">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="white">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.414 0 .004 5.411.001 12.045a11.871 11.871 0 001.591 5.976L0 24l6.146-1.612a11.821 11.821 0 005.904 1.569h.005c6.636 0 12.045-5.411 12.048-12.047a11.851 11.851 0 00-3.51-8.525z"/>
+            </svg>
+        </a>
+    </div>
+
     <script>
-        const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), direction: 'vertical', smooth: true });
-        function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-        requestAnimationFrame(raf);
+        document.addEventListener("DOMContentLoaded", () => {
+            const btnLayer = document.getElementById('fixed-buttons-container');
+            document.body.appendChild(btnLayer);
 
-        gsap.registerPlugin(ScrollTrigger);
-        
-        // Reveal Hero Text
-        document.querySelectorAll('.reveal-text').forEach(el => {
-            gsap.from(el, { opacity: 0, y: 50, duration: 1, ease: "power3.out", delay: 0.2 });
+            const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), direction: 'vertical', smooth: true });
+            function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+            requestAnimationFrame(raf);
+            
+            gsap.registerPlugin(ScrollTrigger);
+            document.querySelectorAll('.reveal-text').forEach(el => { gsap.from(el, { scrollTrigger: { trigger: el, start: "top 90%" }, y: 30, opacity: 0, duration: 1 }); });
+
+            gsap.from(".gallery-item", {
+                scrollTrigger: { trigger: ".grid", start: "top 80%" },
+                y: 50, opacity: 0, duration: 0.8, stagger: 0.1, ease: "power3.out"
+            });
+
+            const btt = document.getElementById('back-top-trigger');
+            window.onscroll = function() {
+                if (document.body.scrollTop > 450 || document.documentElement.scrollTop > 450) {
+                    btt.style.display = "flex";
+                } else {
+                    btt.style.display = "none";
+                }
+            };
+            btt.onclick = function() { window.scrollTo({top: 0, behavior: 'smooth'}); };
         });
 
-        // Staggered Gallery Reveal
-        gsap.from(".gallery-item", {
-            scrollTrigger: { trigger: ".grid", start: "top 80%" },
-            y: 50, opacity: 0, duration: 0.8, stagger: 0.1, ease: "power3.out"
-        });
-
-        // MENU TOGGLE
         function manualToggle() {
             var menu = document.getElementById("dropdown-menu");
             var btn = document.getElementById("btn-toggle");
-            if (menu.style.display === "none") {
+            if (menu.style.display === "none" || menu.style.display === "") {
                 menu.style.display = "block";
                 btn.innerText = "CLOSE";
-                btn.classList.remove("bg-accent", "text-black");
-                btn.classList.add("bg-white", "text-black");
             } else {
                 menu.style.display = "none";
                 btn.innerText = "MENU";
-                btn.classList.remove("bg-white");
-                btn.classList.add("bg-accent", "text-black");
             }
         }
     </script>
