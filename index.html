@@ -1,25 +1,3 @@
-Untuk mencapai skor 95-100 di Mobile dan Desktop (terutama LCP dan Render Blocking), kita harus melakukan optimasi agresif.
-
-Masalah utama pada kode sebelumnya adalah penggunaan Tailwind CDN (Javascript). Browser harus mendownload script besar, membacanya, lalu membuat CSS secara real-time. Ini sangat lambat di HP.
-
-Solusi Agresif:
-
-Menghapus Tailwind CDN: Saya telah menggantinya dengan CSS Statis (Manual) yang ditanam langsung di <head>. Ini membuat website loading instan tanpa menunggu script.
-
-Fix Layout Shift (CLS): Semua gambar kini memiliki container dengan aspect-ratio yang dikunci, sehingga halaman tidak "bergoyang" saat gambar dimuat.
-
-Aksesibilitas (A11y): Menambahkan aria-label pada tombol, meningkatkan kontras warna, dan memperbaiki struktur heading untuk pembaca layar (Screen Reader).
-
-Lazy Loading Cerdas: Gambar Hero dimuat prioritas tinggi, gambar lain dimuat belakangan (lazy).
-
-Berikut adalah kode lengkap yang sudah dirombak total performanya namun tampilan tetap 100% sama.
-
-code
-Html
-play_circle
-download
-content_copy
-expand_less
 <!DOCTYPE html>
 <html lang="id">
 
