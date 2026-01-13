@@ -5,30 +5,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    <!-- Primary SEO Meta Tags -->
     <title>VALEOMOTOR.ID - Premium Motorcycle Showroom Jakarta | Sport & Electric</title>
     <meta name="description" content="Showroom motor premium di Jakarta. Koleksi sportbike, big bike, dan motor listrik terbaik (250cc - 1000cc). Unit terkurasi, bergaransi, dan surat resmi.">
     <meta name="keywords" content="showroom motor jakarta, jual moge jakarta, motor listrik premium, sportbike indonesia, valeomotor">
     <meta name="author" content="Valeomotor.id">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="canonical" href="https://valeomotor.id/">
     
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://valeomotor.id/">
     <meta property="og:title" content="VALEOMOTOR.ID - Premium Motorcycle Showroom Jakarta">
     <meta property="og:description" content="Destinasi utama untuk motor premium bensin dan listrik di Jakarta Selatan. Unit 100% terkurasi.">
-    <meta property="og:image" content="assets/img/og-image.jpg">
+    <meta property="og:image" content="https://valeomotor.id/assets/img/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:site_name" content="Valeomotor.id">
 
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://valeomotor.id/">
+    <meta name="twitter:title" content="VALEOMOTOR.ID - Premium Motorcycle Showroom Jakarta">
+    <meta name="twitter:description" content="Destinasi utama untuk motor premium bensin dan listrik di Jakarta Selatan. Unit 100% terkurasi.">
+    <meta name="twitter:image" content="https://valeomotor.id/assets/img/og-image.jpg">
+
+    <!-- Favicon & App Icons -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#09090B">
+    <meta name="msapplication-TileColor" content="#DFE104">
+    <meta name="msapplication-config" content="/browserconfig.xml">
 
+    <!-- Preconnect & DNS Prefetch for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://unpkg.com">
+
+    <!-- Preload Critical Font -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&display=swap" as="style">
+    
+    <!-- Schema.org - MotorcycleDealer -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "MotorcycleDealer",
       "name": "Valeomotor.id",
-      "image": "assets/img/motor/ApriliaRSV4Factory2.webp",
+      "image": "https://valeomotor.id/assets/img/motor/ApriliaRSV4Factory2.webp",
+      "description": "Showroom motor premium di Jakarta. Koleksi sportbike, big bike, dan motor listrik terbaik.",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Jl. Otomotif Future No. 88",
@@ -43,158 +73,128 @@
       },
       "url": "https://valeomotor.id",
       "telephone": "+62895639068080",
-      "priceRange": "$$$"
+      "priceRange": "$$$",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        "opens": "09:00",
+        "closes": "18:00"
+      },
+      "sameAs": [
+        "https://www.instagram.com/valeomotor.id",
+        "https://www.facebook.com/valeomotor.id"
+      ]
     }
     </script>
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Schema.org - FAQPage for AI Overview -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Apakah motor di Valeomotor memiliki surat resmi?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "100% Resmi. Kami tidak menjual unit bodong. Setiap motor dilengkapi BPKB, STNK, dan Faktur sah."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Bagaimana garansi mesin di Valeomotor?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Unit Second garansi 6 bulan. Unit Baru garansi resmi pabrikan 3-5 tahun."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Apa syarat test ride motor di Valeomotor?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Wajib membawa SIM C berlaku, KTP asli, dan perlengkapan safety lengkap."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Apakah Valeomotor melayani pengiriman luar kota?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Bisa. Menggunakan towing khusus moge berasuransi ke seluruh Indonesia."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- Tailwind CSS - Async Loading -->
+    <script src="https://cdn.tailwindcss.com" defer></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        background: '#09090B', foreground: '#FAFAFA', muted: '#27272A',
-                        'muted-foreground': '#A1A1AA', accent: '#DFE104', border: '#3F3F46',
-                    },
-                    fontFamily: { sans: ['Space Grotesk', 'sans-serif'], body: ['Inter', 'sans-serif'] },
-                    animation: { marquee: 'marquee 25s linear infinite', drop: 'drop 2s infinite' },
-                    keyframes: {
-                        marquee: { '0%': { transform: 'translateX(0%)' }, '100%': { transform: 'translateX(-100%)' } },
-                        drop: { '0%': { top: '-50%' }, '100%': { top: '100%' } }
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof tailwind !== 'undefined') {
+                tailwind.config = {
+                    theme: {
+                        extend: {
+                            colors: {
+                                background: '#09090B', foreground: '#FAFAFA', muted: '#27272A',
+                                'muted-foreground': '#A1A1AA', accent: '#DFE104', border: '#3F3F46',
+                            },
+                            fontFamily: { sans: ['Space Grotesk', 'sans-serif'], body: ['Inter', 'sans-serif'] },
+                            animation: { marquee: 'marquee 25s linear infinite', drop: 'drop 2s infinite' },
+                            keyframes: {
+                                marquee: { '0%': { transform: 'translateX(0%)' }, '100%': { transform: 'translateX(-100%)' } },
+                                drop: { '0%': { top: '-50%' }, '100%': { top: '100%' } }
+                            }
+                        }
                     }
                 }
             }
-        }
+        });
     </script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap"
-        rel="stylesheet">
+    <!-- Google Fonts - Optimized Loading -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet"></noscript>
+    
+    <!-- External Scripts - Deferred -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.29/dist/lenis.min.js" defer></script>
 
+    <!-- Critical CSS - Inlined for FCP -->
     <style>
-        /* Base Styles */
-        body {
-            background-color: #09090B;
-            color: #FAFAFA;
-            overflow-x: hidden;
-        }
-
-        ::selection {
-            background-color: #DFE104;
-            color: black;
-        }
-
-        /* Typography */
-        .text-clamp-hero {
-            font-size: clamp(3rem, 14vw, 18rem);
-            line-height: 0.85;
-        }
-
-        .text-clamp-h2 {
-            font-size: clamp(2rem, 7vw, 6rem);
-            line-height: 1;
-        }
-
-        .text-clamp-num {
-            font-size: clamp(3.5rem, 10vw, 8rem);
-        }
-
-        /* Effects */
-        .stroke-text {
-            -webkit-text-stroke: 1px #52525B;
-            color: transparent;
-        }
-
-        .hover-invert {
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .hover-invert:hover {
-            background-color: #DFE104;
-            color: #000000;
-            border-color: #DFE104;
-        }
-
-        .hover-invert:hover .child-text-title {
-            color: #000000;
-        }
-
-        .hover-invert:hover .child-text-muted {
-            color: rgba(0, 0, 0, 0.7);
-        }
-
-        .hover-invert:hover .child-border {
-            border-color: rgba(0, 0, 0, 0.2);
-        }
-
-        .hover-invert:hover .child-number {
-            color: rgba(0, 0, 0, 0.1);
-        }
-
-        /* FAQ Styles */
-        .faq-body {
-            height: 0;
-            overflow: hidden;
-            transition: height 0.4s ease-in-out;
-        }
-
-        .faq-header {
-            cursor: pointer;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        /* FIXED BUTTONS - PROFESSIONAL STATIC VERSION */
-        #fixed-buttons-container {
-            position: fixed !important;
-            bottom: 30px !important;
-            right: 30px !important;
-            z-index: 999999999 !important;
-            display: flex !important;
-            flex-direction: column !important;
-            gap: 12px !important;
-            pointer-events: none !important;
-        }
-
-        .btn-universal {
-            pointer-events: auto !important;
-            width: 60px !important;
-            height: 60px !important;
-            border-radius: 50% !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6) !important;
-            cursor: pointer !important;
-            border: none !important;
-            transition: all 0.2s ease !important;
-        }
-
-        #back-top-trigger {
-            background-color: #DFE104 !important;
-            color: #000 !important;
-            display: none;
-            /* Controlled by JS */
-        }
-
-        .wa-trigger {
-            background-color: #25D366 !important;
-            text-decoration: none !important;
-        }
-
-        .btn-universal:hover {
-            transform: translateY(-5px) !important;
-        }
+        *,*::before,*::after{box-sizing:border-box}
+        body{background-color:#09090B;color:#FAFAFA;overflow-x:hidden;margin:0;font-family:'Space Grotesk',sans-serif}
+        ::selection{background-color:#DFE104;color:#000}
+        .text-clamp-hero{font-size:clamp(3rem,14vw,18rem);line-height:.85}
+        .text-clamp-h2{font-size:clamp(2rem,7vw,6rem);line-height:1}
+        .text-clamp-num{font-size:clamp(3.5rem,10vw,8rem)}
+        .stroke-text{-webkit-text-stroke:1px #52525B;color:transparent}
+        .hover-invert{transition:all .4s cubic-bezier(.16,1,.3,1)}
+        .hover-invert:hover{background-color:#DFE104;color:#000;border-color:#DFE104}
+        .hover-invert:hover .child-text-title{color:#000}
+        .hover-invert:hover .child-text-muted{color:rgba(0,0,0,.7)}
+        .hover-invert:hover .child-border{border-color:rgba(0,0,0,.2)}
+        .hover-invert:hover .child-number{color:rgba(0,0,0,.1)}
+        .faq-body{height:0;overflow:hidden;transition:height .4s ease-in-out}
+        .faq-header{cursor:pointer;-webkit-tap-highlight-color:transparent}
+        #fixed-buttons-container{position:fixed!important;bottom:30px!important;right:30px!important;z-index:999999999!important;display:flex!important;flex-direction:column!important;gap:12px!important;pointer-events:none!important}
+        .btn-universal{pointer-events:auto!important;width:60px!important;height:60px!important;border-radius:50%!important;display:flex!important;align-items:center!important;justify-content:center!important;box-shadow:0 4px 15px rgba(0,0,0,.6)!important;cursor:pointer!important;border:none!important;transition:all .2s ease!important}
+        #back-top-trigger{background-color:#DFE104!important;color:#000!important;display:none}
+        .wa-trigger{background-color:#25D366!important;text-decoration:none!important}
+        .btn-universal:hover{transform:translateY(-5px)!important}
+        @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
+        @keyframes drop{0%{top:-50%}100%{top:100%}}
+        .animate-marquee{animation:marquee 25s linear infinite}
+        .animate-drop{animation:drop 2s infinite}
     </style>
 </head>
 
 <body>
 
-    <nav class="fixed top-0 left-0 w-full z-[999] bg-background border-b border-border">
+    <nav class="fixed top-0 left-0 w-full z-[999] bg-background border-b border-border" role="navigation" aria-label="Main navigation">
         <div class="px-6 py-4 flex justify-between items-center relative z-[1000] bg-background">
             <a href="index.html"
                 class="text-2xl font-bold tracking-tighter uppercase font-sans hover:text-accent transition-colors" aria-label="Valeomotor Home">
@@ -213,28 +213,28 @@
             <div class="flex items-center gap-4">
                 <a href="https://wa.me/62895639068080"
                     class="hidden md:block uppercase text-xs font-bold tracking-[0.2em] border border-white px-6 py-2 hover:bg-white hover:text-black transition-all">Kontak</a>
-                <button id="btn-toggle" onclick="manualToggle()" aria-label="Toggle Menu"
+                <button id="btn-toggle" onclick="manualToggle()" aria-label="Toggle Menu" aria-expanded="false" aria-controls="dropdown-menu"
                     class="md:hidden bg-accent text-black uppercase text-xs font-bold tracking-widest px-4 py-3 hover:bg-white transition-colors cursor-pointer border-none">
                     MENU
                 </button>
             </div>
         </div>
 
-        <div id="dropdown-menu"
+        <div id="dropdown-menu" role="menu" aria-hidden="true"
             style="display: none; position: absolute; top: 100%; left: 0; width: 100%; background-color: #1a1a1a; border-bottom: 2px solid #333; z-index: 990; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
             <div class="flex flex-col p-8 space-y-6">
-                <a href="about.html"
+                <a href="about.html" role="menuitem"
                     class="text-xl font-bold uppercase tracking-widest text-white hover:text-accent block border-b border-gray-800 pb-2">Tentang
                     Kami</a>
-                <a href="motor.html"
+                <a href="motor.html" role="menuitem"
                     class="text-xl font-bold uppercase tracking-widest text-white hover:text-accent block border-b border-gray-800 pb-2">Koleksi
                     Motor</a>
-                <a href="gallery.html"
+                <a href="gallery.html" role="menuitem"
                     class="text-xl font-bold uppercase tracking-widest text-accent block border-b border-gray-800 pb-2">Gallery</a>
-                <a href="blog.html"
+                <a href="blog.html" role="menuitem"
                     class="text-xl font-bold uppercase tracking-widest text-white hover:text-accent block border-b border-gray-800 pb-2">Blog
                     & Info</a>
-                <a href="https://wa.me/62895639068080"
+                <a href="https://wa.me/62895639068080" role="menuitem"
                     class="text-xl font-bold uppercase tracking-widest text-accent hover:text-white block mt-2">Hubungi
                     Kami</a>
             </div>
@@ -244,8 +244,8 @@
     <header id="hero"
         class="relative h-screen flex flex-col justify-center items-center overflow-hidden border-b-2 border-border">
         <div class="absolute inset-0 opacity-40 z-0 select-none">
-            <img src="assets/img/motor/ApriliaRSV4Factory2.webp" alt="Premium Aprilia RSV4 Factory di Showroom Valeomotor"
-                class="w-full h-full object-cover grayscale brightness-50" fetchpriority="high">
+            <img src="assets/img/motor/ApriliaRSV4Factory2.webp" alt="Premium Aprilia RSV4 Factory di Showroom Valeomotor Jakarta"
+                class="w-full h-full object-cover grayscale brightness-50" width="1920" height="1080" fetchpriority="high">
         </div>
         <div class="z-10 text-center flex flex-col items-center mix-blend-normal px-4">
             <p class="uppercase tracking-[0.3em] md:tracking-[0.5em] text-[10px] md:text-sm mb-4 text-accent">Combustion
@@ -261,7 +261,7 @@
         </div>
     </header>
 
-    <div class="bg-accent text-black py-3 md:py-6 border-y-2 border-black overflow-hidden relative z-20">
+    <div class="bg-accent text-black py-3 md:py-6 border-y-2 border-black overflow-hidden relative z-20" aria-hidden="true">
         <div class="flex whitespace-nowrap overflow-hidden relative h-8 md:h-12 items-center">
             <div class="animate-marquee inline-block w-max">
                 <span class="text-xl md:text-5xl font-bold uppercase tracking-tighter px-4">
@@ -276,10 +276,10 @@
         </div>
     </div>
 
-    <section id="about" class="pt-16 md:pt-32 pb-8 md:pb-16 px-6 md:px-12 border-b-2 border-border bg-background">
+    <section id="about" class="pt-16 md:pt-32 pb-8 md:pb-16 px-6 md:px-12 border-b-2 border-border bg-background" aria-labelledby="about-heading">
         <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12">
             <div class="lg:col-span-8">
-                <h2 class="text-clamp-h2 font-bold uppercase tracking-tighter mb-6 md:mb-8 reveal-text">
+                <h2 id="about-heading" class="text-clamp-h2 font-bold uppercase tracking-tighter mb-6 md:mb-8 reveal-text">
                     Dua Dunia. <br><span class="stroke-text">Satu Obsesi.</span><br>
                     <span class="text-accent">Kecepatan.</span>
                 </h2>
@@ -302,27 +302,27 @@
         </div>
     </section>
 
-    <section id="products" class="py-16 md:py-32 px-4 md:px-12 bg-background relative z-10">
+    <section id="products" class="py-16 md:py-32 px-4 md:px-12 bg-background relative z-10" aria-labelledby="products-heading">
         <div class="mb-12 md:mb-24 relative">
             <h3
-                class="text-6xl md:text-9xl font-bold uppercase text-muted opacity-20 absolute -top-6 md:-top-20 left-0 pointer-events-none select-none">
+                class="text-6xl md:text-9xl font-bold uppercase text-muted opacity-20 absolute -top-6 md:-top-20 left-0 pointer-events-none select-none" aria-hidden="true">
                 Stock</h3>
-            <h2
+            <h2 id="products-heading"
                 class="text-4xl md:text-7xl font-bold uppercase tracking-tighter relative z-10 pl-4 border-l-4 border-accent">
                 Why <br>Valeo?</h2>
         </div>
 
         <div class="max-w-7xl mx-auto space-y-12 md:space-y-24 pb-10">
-            <div
+            <article
                 class="group hover-invert border-2 border-border bg-background p-0 md:p-12 flex flex-col md:flex-row gap-6 md:gap-12 items-center relative">
                 <div
                     class="w-full md:w-1/2 aspect-video md:aspect-auto h-auto md:h-[500px] overflow-hidden border-b-2 md:border-2 border-border grayscale group-hover:grayscale-0 transition-all duration-500 bg-muted relative">
-                    <img src="assets/img/service/precision.webp" alt="Koleksi Ducati Panigale V4S Valeomotor" loading="lazy" decoding="async"
+                    <img src="assets/img/service/precision.webp" alt="Koleksi Ducati Panigale V4S Valeomotor - Precision Engines" loading="lazy" decoding="async" width="800" height="500"
                         class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                 </div>
                 <div class="w-full md:w-1/2 p-6 md:p-0">
                     <span
-                        class="text-5xl md:text-8xl font-bold text-muted transition-colors block mb-4 leading-none child-number">01</span>
+                        class="text-5xl md:text-8xl font-bold text-muted transition-colors block mb-4 leading-none child-number" aria-hidden="true">01</span>
                     <h3 class="text-2xl md:text-4xl font-bold uppercase tracking-tighter mb-4 child-text-title">
                         Precision Engines</h3>
                     <p
@@ -341,17 +341,17 @@
                         </li>
                     </ul>
                 </div>
-            </div>
-            <div
+            </article>
+            <article
                 class="group hover-invert border-2 border-border bg-background p-0 md:p-12 flex flex-col md:flex-row gap-6 md:gap-12 items-center relative">
                 <div
                     class="w-full md:w-1/2 aspect-video md:aspect-auto h-auto md:h-[500px] overflow-hidden border-b-2 md:border-2 border-border grayscale group-hover:grayscale-0 transition-all duration-500 bg-muted relative">
-                    <img src="assets/img/service/enggine.webp" alt="Honda CBR1000RR-R SP Premium Stock" loading="lazy" decoding="async"
+                    <img src="assets/img/service/enggine.webp" alt="Honda CBR1000RR-R SP Premium Stock - Premium Build" loading="lazy" decoding="async" width="800" height="500"
                         class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                 </div>
                 <div class="w-full md:w-1/2 p-6 md:p-0">
                     <span
-                        class="text-5xl md:text-8xl font-bold text-muted transition-colors block mb-4 leading-none child-number">02</span>
+                        class="text-5xl md:text-8xl font-bold text-muted transition-colors block mb-4 leading-none child-number" aria-hidden="true">02</span>
                     <h3 class="text-2xl md:text-4xl font-bold uppercase tracking-tighter mb-4 child-text-title">Premium
                         Build</h3>
                     <p
@@ -370,17 +370,17 @@
                         </li>
                     </ul>
                 </div>
-            </div>
-            <div
+            </article>
+            <article
                 class="group hover-invert border-2 border-border bg-background p-0 md:p-12 flex flex-col md:flex-row gap-6 md:gap-12 items-center relative">
                 <div
                     class="w-full md:w-1/2 aspect-video md:aspect-auto h-auto md:h-[500px] overflow-hidden border-b-2 md:border-2 border-border grayscale group-hover:grayscale-0 transition-all duration-500 bg-muted relative">
-                    <img src="assets/img/service/servicemotor.webp" alt="Kawasaki H2R High Performance Unit" loading="lazy" decoding="async"
+                    <img src="assets/img/service/servicemotor.webp" alt="Kawasaki H2R High Performance Unit - Full Service" loading="lazy" decoding="async" width="800" height="500"
                         class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                 </div>
                 <div class="w-full md:w-1/2 p-6 md:p-0">
                     <span
-                        class="text-5xl md:text-8xl font-bold text-muted transition-colors block mb-4 leading-none child-number">03</span>
+                        class="text-5xl md:text-8xl font-bold text-muted transition-colors block mb-4 leading-none child-number" aria-hidden="true">03</span>
                     <h3 class="text-2xl md:text-4xl font-bold uppercase tracking-tighter mb-4 child-text-title">Full
                         Service</h3>
                     <p
@@ -399,50 +399,50 @@
                         </li>
                     </ul>
                 </div>
-            </div>
+            </article>
         </div>
     </section>
 
-    <section id="gallery" class="py-16 md:py-32 px-4 bg-background border-t-2 border-border relative z-20">
+    <section id="gallery" class="py-16 md:py-32 px-4 bg-background border-t-2 border-border relative z-20" aria-labelledby="gallery-heading">
         <div class="max-w-[95vw] mx-auto">
-            <h2 class="text-clamp-h2 font-bold uppercase tracking-tighter mb-10 md:mb-20 text-center reveal-text">
+            <h2 id="gallery-heading" class="text-clamp-h2 font-bold uppercase tracking-tighter mb-10 md:mb-20 text-center reveal-text">
                 Visual <span class="text-accent">Gallery</span>
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="group relative aspect-video md:aspect-[16/9] overflow-hidden border-2 border-border">
-                    <img src="assets/img/motor/triumphthuxtonrs.webp" alt="Classic Soul Triumph at Valeomotor" loading="lazy" decoding="async"
+                <figure class="group relative aspect-video md:aspect-[16/9] overflow-hidden border-2 border-border">
+                    <img src="assets/img/motor/triumphthuxtonrs.webp" alt="Triumph Thruxton RS Classic Soul di Valeomotor" loading="lazy" decoding="async" width="800" height="450"
                         class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110">
-                    <div
+                    <figcaption
                         class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                         <span class="text-xl md:text-3xl font-bold uppercase tracking-tighter text-accent">Classic
                             Soul</span>
-                    </div>
-                </div>
-                <div class="group relative aspect-video md:aspect-[16/9] overflow-hidden border-2 border-border">
-                    <img src="assets/img/motor/ducatipanigalev4s.webp" alt="Modern Speed Ducati Gallery" loading="lazy" decoding="async"
+                    </figcaption>
+                </figure>
+                <figure class="group relative aspect-video md:aspect-[16/9] overflow-hidden border-2 border-border">
+                    <img src="assets/img/motor/ducatipanigalev4s.webp" alt="Ducati Panigale V4S Modern Speed Gallery" loading="lazy" decoding="async" width="800" height="450"
                         class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110">
-                    <div
+                    <figcaption
                         class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                         <span class="text-xl md:text-3xl font-bold uppercase tracking-tighter text-accent">Modern
                             Speed</span>
-                    </div>
-                </div>
-                <div
+                    </figcaption>
+                </figure>
+                <figure
                     class="group relative aspect-video md:aspect-[21/9] md:col-span-2 overflow-hidden border-2 border-border">
-                    <img src="assets/img/motor/KawasakiNinjaH2.webp" alt="The Garage Valeomotor Showroom Jakarta" loading="lazy" decoding="async"
+                    <img src="assets/img/motor/KawasakiNinjaH2.webp" alt="Kawasaki Ninja H2 di The Garage Valeomotor Showroom Jakarta" loading="lazy" decoding="async" width="1600" height="686"
                         class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110">
-                    <div
+                    <figcaption
                         class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                         <span class="text-2xl md:text-5xl font-bold uppercase tracking-tighter text-accent">The
                             Garage</span>
-                    </div>
-                </div>
+                    </figcaption>
+                </figure>
             </div>
         </div>
     </section>
 
-    <section class="py-16 md:py-32 px-4 border-t-2 border-border bg-background relative z-20">
-        <h2 class="text-center text-xs uppercase tracking-[0.5em] text-accent mb-12 md:mb-20">Performance Data</h2>
+    <section class="py-16 md:py-32 px-4 border-t-2 border-border bg-background relative z-20" aria-labelledby="performance-heading">
+        <h2 id="performance-heading" class="text-center text-xs uppercase tracking-[0.5em] text-accent mb-12 md:mb-20">Performance Data</h2>
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-px bg-border max-w-[95vw] mx-auto border-2 border-border">
             <div class="bg-background p-6 md:p-12 group hover:bg-muted transition-colors">
                 <h4 class="text-[10px] md:text-xs uppercase tracking-widest text-muted-foreground mb-2 md:mb-4">Max
@@ -475,23 +475,23 @@
         </div>
     </section>
 
-    <section id="blog" class="py-16 md:py-32 px-6 md:px-12 bg-background border-t-2 border-border relative z-20">
+    <section id="blog" class="py-16 md:py-32 px-6 md:px-12 bg-background border-t-2 border-border relative z-20" aria-labelledby="faq-heading">
         <div class="max-w-4xl mx-auto">
-            <h2
+            <h2 id="faq-heading"
                 class="text-clamp-h2 font-bold uppercase tracking-tighter mb-10 md:mb-16 text-center md:text-left reveal-text">
                 Common <span class="text-accent">Q&A</span>
             </h2>
-            <div class="space-y-0" id="faq-container">
-                <div class="faq-item border-t-2 border-border group overflow-hidden">
+            <div class="space-y-0" id="faq-container" role="list">
+                <div class="faq-item border-t-2 border-border group overflow-hidden" role="listitem">
                     <div class="faq-header flex justify-between items-center py-6 md:py-8 pr-4 hover:bg-muted transition-colors duration-200 select-none"
-                        onclick="toggleFaq(this)">
+                        onclick="toggleFaq(this)" role="button" aria-expanded="false" tabindex="0">
                         <h3 class="text-base md:text-2xl font-bold uppercase tracking-tight pl-2"><span
                                 class="text-accent mr-4">01.</span> Legalitas & Surat?</h3>
                         <div
-                            class="faq-icon text-2xl md:text-3xl font-bold text-accent transition-transform duration-300 origin-center">
+                            class="faq-icon text-2xl md:text-3xl font-bold text-accent transition-transform duration-300 origin-center" aria-hidden="true">
                             +</div>
                     </div>
-                    <div class="faq-body">
+                    <div class="faq-body" role="region">
                         <div class="pb-8 pl-2 md:pl-12 pr-4">
                             <p class="font-body text-base md:text-lg text-muted-foreground leading-relaxed"><strong>100%
                                     Resmi.</strong> Kami tidak menjual unit "bodong". Setiap motor dilengkapi BPKB,
@@ -499,16 +499,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="faq-item border-t-2 border-border group overflow-hidden">
+                <div class="faq-item border-t-2 border-border group overflow-hidden" role="listitem">
                     <div class="faq-header flex justify-between items-center py-6 md:py-8 pr-4 hover:bg-muted transition-colors duration-200 select-none"
-                        onclick="toggleFaq(this)">
+                        onclick="toggleFaq(this)" role="button" aria-expanded="false" tabindex="0">
                         <h3 class="text-base md:text-2xl font-bold uppercase tracking-tight pl-2"><span
                                 class="text-accent mr-4">02.</span> Garansi Mesin?</h3>
                         <div
-                            class="faq-icon text-2xl md:text-3xl font-bold text-accent transition-transform duration-300 origin-center">
+                            class="faq-icon text-2xl md:text-3xl font-bold text-accent transition-transform duration-300 origin-center" aria-hidden="true">
                             +</div>
                     </div>
-                    <div class="faq-body">
+                    <div class="faq-body" role="region">
                         <div class="pb-8 pl-2 md:pl-12 pr-4">
                             <p class="font-body text-base md:text-lg text-muted-foreground leading-relaxed">Unit
                                 <strong>Second</strong> garansi 6 bulan. Unit <strong>Baru</strong> garansi resmi
@@ -517,32 +517,32 @@
                         </div>
                     </div>
                 </div>
-                <div class="faq-item border-t-2 border-border group overflow-hidden">
+                <div class="faq-item border-t-2 border-border group overflow-hidden" role="listitem">
                     <div class="faq-header flex justify-between items-center py-6 md:py-8 pr-4 hover:bg-muted transition-colors duration-200 select-none"
-                        onclick="toggleFaq(this)">
+                        onclick="toggleFaq(this)" role="button" aria-expanded="false" tabindex="0">
                         <h3 class="text-base md:text-2xl font-bold uppercase tracking-tight pl-2"><span
                                 class="text-accent mr-4">03.</span> Syarat Test Ride?</h3>
                         <div
-                            class="faq-icon text-2xl md:text-3xl font-bold text-accent transition-transform duration-300 origin-center">
+                            class="faq-icon text-2xl md:text-3xl font-bold text-accent transition-transform duration-300 origin-center" aria-hidden="true">
                             +</div>
                     </div>
-                    <div class="faq-body">
+                    <div class="faq-body" role="region">
                         <div class="pb-8 pl-2 md:pl-12 pr-4">
                             <p class="font-body text-base md:text-lg text-muted-foreground leading-relaxed">Wajib
                                 membawa <strong>SIM C</strong> berlaku, KTP asli, dan perlengkapan safety lengkap.</p>
                         </div>
                     </div>
                 </div>
-                <div class="faq-item border-y-2 border-border group overflow-hidden">
+                <div class="faq-item border-y-2 border-border group overflow-hidden" role="listitem">
                     <div class="faq-header flex justify-between items-center py-6 md:py-8 pr-4 hover:bg-muted transition-colors duration-200 select-none"
-                        onclick="toggleFaq(this)">
+                        onclick="toggleFaq(this)" role="button" aria-expanded="false" tabindex="0">
                         <h3 class="text-base md:text-2xl font-bold uppercase tracking-tight pl-2"><span
                                 class="text-accent mr-4">04.</span> Pengiriman Luar Kota?</h3>
                         <div
-                            class="faq-icon text-2xl md:text-3xl font-bold text-accent transition-transform duration-300 origin-center">
+                            class="faq-icon text-2xl md:text-3xl font-bold text-accent transition-transform duration-300 origin-center" aria-hidden="true">
                             +</div>
                     </div>
-                    <div class="faq-body">
+                    <div class="faq-body" role="region">
                         <div class="pb-8 pl-2 md:pl-12 pr-4">
                             <p class="font-body text-base md:text-lg text-muted-foreground leading-relaxed">Bisa.
                                 Menggunakan towing khusus moge berasuransi ke seluruh Indonesia.</p>
@@ -555,7 +555,7 @@
 
     <section id="contact" class="py-0 border-t-2 border-border">
         <a href="https://wa.me/62895639068080"
-            class="group block relative overflow-hidden h-[40vh] md:h-[60vh] flex items-center justify-center bg-accent cursor-pointer" aria-label="WhatsApp Contact Valeomotor">
+            class="group block relative overflow-hidden h-[40vh] md:h-[60vh] flex items-center justify-center bg-accent cursor-pointer" aria-label="Hubungi Valeomotor via WhatsApp untuk booking kunjungan">
             <div
                 class="absolute inset-0 flex items-center justify-center z-0 transition-transform duration-500 group-hover:scale-110">
                 <span class="text-5xl md:text-clamp-h2 text-black font-bold uppercase tracking-tighter">Ride Now</span>
@@ -568,9 +568,9 @@
         </a>
     </section>
 
-    <footer class="bg-background text-white py-20 px-6 border-t-2 border-border relative overflow-hidden w-full">
+    <footer class="bg-background text-white py-20 px-6 border-t-2 border-border relative overflow-hidden w-full" role="contentinfo">
         <div
-            class="absolute -bottom-10 -left-10 text-[20vw] font-bold text-muted opacity-5 pointer-events-none select-none leading-none z-0">
+            class="absolute -bottom-10 -left-10 text-[20vw] font-bold text-muted opacity-5 pointer-events-none select-none leading-none z-0" aria-hidden="true">
             VALEO</div>
 
         <div class="max-w-[95vw] mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 relative z-10">
@@ -590,7 +590,7 @@
                 </div>
             </div>
 
-            <div class="space-y-8 md:pl-12 border-l-0 md:border-l border-border/30">
+            <nav class="space-y-8 md:pl-12 border-l-0 md:border-l border-border/30" aria-label="Footer navigation">
                 <h4 class="text-sm uppercase tracking-[0.2em] text-accent mb-6">Explore</h4>
                 <ul class="space-y-4">
                     <li><a href="about.html"
@@ -606,7 +606,7 @@
                             class="text-2xl font-bold uppercase tracking-tight hover:text-accent hover:pl-2 transition-all duration-300 block">BLOG
                             & FAQ</a></li>
                 </ul>
-            </div>
+            </nav>
 
             <div class="space-y-10 border-l-0 md:border-l border-border/30 md:pl-12">
                 <div>
@@ -614,37 +614,37 @@
                     <address class="not-italic text-lg text-muted-foreground space-y-2 font-body">
                         <p class="text-white font-bold text-xl">Jl. Otomotif Future No. 88</p>
                         <p>Jakarta Selatan, 12430</p>
-                        <p class="hover:text-accent cursor-pointer transition-colors mt-4 block">+62 812 3456 7890</p>
-                        <p class="hover:text-accent cursor-pointer transition-colors block">garage@valeomotor.id</p>
+                        <a href="tel:+6281234567890" class="hover:text-accent cursor-pointer transition-colors mt-4 block">+62 812 3456 7890</a>
+                        <a href="mailto:info@valeomotor.id" class="hover:text-accent cursor-pointer transition-colors block">info@valeomotor.id</a>
                     </address>
                 </div>
                 <div>
                     <h4 class="text-sm uppercase tracking-[0.2em] text-accent mb-6">Follow Us</h4>
                     <div class="flex gap-4">
-                        <a href="https://www.instagram.com/" aria-label="Instagram"
+                        <a href="https://www.instagram.com/" aria-label="Follow Valeomotor di Instagram" rel="noopener noreferrer" target="_blank"
                             class="w-12 h-12 border border-border flex items-center justify-center rounded-full hover:bg-accent hover:text-black hover:scale-110 transition-all duration-300 group">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
+                                stroke-linejoin="round" aria-hidden="true">
                                 <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
                                 <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
                                 <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
                             </svg>
                         </a>
-                        <a href="https://wa.me/62895639068080" aria-label="WhatsApp"
+                        <a href="https://wa.me/62895639068080" aria-label="Chat dengan Valeomotor via WhatsApp" rel="noopener noreferrer" target="_blank"
                             class="w-12 h-12 border border-border flex items-center justify-center rounded-full hover:bg-[#25D366] hover:text-white hover:scale-110 transition-all duration-300 group">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
+                                stroke-linejoin="round" aria-hidden="true">
                                 <path
                                     d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                             </svg>
                         </a>
-                        <a href="https://www.facebook.com/" aria-label="Facebook"
+                        <a href="https://www.facebook.com/" aria-label="Follow Valeomotor di Facebook" rel="noopener noreferrer" target="_blank"
                             class="w-12 h-12 border border-border flex items-center justify-center rounded-full hover:bg-[#1877F2] hover:text-white hover:scale-110 transition-all duration-300 group">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
+                                stroke-linejoin="round" aria-hidden="true">
                                 <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
                             </svg>
                         </a>
@@ -662,44 +662,56 @@
 
     <div id="fixed-buttons-container">
         <a href="#hero">
-        <button id="back-top-trigger" class="btn-universal" aria-label="Back to Top">
+        <button id="back-top-trigger" class="btn-universal" aria-label="Kembali ke atas halaman">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4"
-                stroke-linecap="round" stroke-linejoin="round">
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="m18 15-6-6-6 6" />
             </svg>
         </button></a>
-        <a href="https://wa.me/62895639068080" target="_blank" class="btn-universal wa-trigger" aria-label="Chat via WhatsApp">
-            <svg width="34" height="34" viewBox="0 0 24 24" fill="white">
+        <a href="https://wa.me/62895639068080" target="_blank" rel="noopener noreferrer" class="btn-universal wa-trigger" aria-label="Chat via WhatsApp dengan Valeomotor">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="white" aria-hidden="true">
                 <path
                     d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.414 0 .004 5.411.001 12.045a11.871 11.871 0 001.591 5.976L0 24l6.146-1.612a11.821 11.821 0 005.904 1.569h.005c6.636 0 12.045-5.411 12.048-12.047a11.851 11.851 0 00-3.51-8.525z" />
             </svg>
         </a>
     </div>
 
+    <!-- Optimized JavaScript - Deferred Execution -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const btnLayer = document.getElementById('fixed-buttons-container');
             document.body.appendChild(btnLayer);
 
-            // Lenis Scroll
-            const lenis = new Lenis({ smooth: true });
-            function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-            requestAnimationFrame(raf);
+            // Lenis Scroll - Conditional Loading
+            if (typeof Lenis !== 'undefined') {
+                const lenis = new Lenis({ smooth: true });
+                function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+                requestAnimationFrame(raf);
+            }
 
-            // GSAP Init
-            gsap.registerPlugin(ScrollTrigger);
-            gsap.to("#about", { scrollTrigger: { trigger: "header", start: "top top", end: "bottom top", scrub: true }, scale: 1.15, opacity: 0, y: 100 });
-            document.querySelectorAll('.reveal-text').forEach(el => { gsap.from(el, { scrollTrigger: { trigger: el, start: "top 90%" }, y: 30, opacity: 0, duration: 1 }); });
+            // GSAP Init - Conditional Loading
+            if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+                gsap.registerPlugin(ScrollTrigger);
+                gsap.to("#about", { scrollTrigger: { trigger: "header", start: "top top", end: "bottom top", scrub: true }, scale: 1.15, opacity: 0, y: 100 });
+                document.querySelectorAll('.reveal-text').forEach(el => { gsap.from(el, { scrollTrigger: { trigger: el, start: "top 90%" }, y: 30, opacity: 0, duration: 1 }); });
+            }
 
-            // BACKTOP VISIBILITY
+            // BACKTOP VISIBILITY - Optimized with Passive Event
             const btt = document.getElementById('back-top-trigger');
-            window.onscroll = function () {
-                if (document.body.scrollTop > 450 || document.documentElement.scrollTop > 450) {
-                    btt.style.display = "flex";
-                } else {
-                    btt.style.display = "none";
+            let ticking = false;
+            window.addEventListener('scroll', function() {
+                if (!ticking) {
+                    window.requestAnimationFrame(function() {
+                        if (document.body.scrollTop > 450 || document.documentElement.scrollTop > 450) {
+                            btt.style.display = "flex";
+                        } else {
+                            btt.style.display = "none";
+                        }
+                        ticking = false;
+                    });
+                    ticking = true;
                 }
-            };
+            }, { passive: true });
 
             btt.onclick = function () {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -712,11 +724,15 @@
             const icon = element.querySelector('.faq-icon');
             const isOpen = parent.classList.contains('active');
 
+            // Update ARIA
+            element.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+
             document.querySelectorAll('.faq-item').forEach(item => {
                 item.classList.remove('active');
                 item.querySelector('.faq-body').style.height = '0px';
                 item.querySelector('.faq-icon').style.transform = 'rotate(0deg)';
                 item.querySelector('.faq-header').classList.remove('bg-muted', 'text-accent');
+                item.querySelector('.faq-header').setAttribute('aria-expanded', 'false');
             });
 
             if (!isOpen) {
@@ -724,20 +740,30 @@
                 body.style.height = body.scrollHeight + "px";
                 icon.style.transform = 'rotate(45deg)';
                 element.classList.add('bg-muted', 'text-accent');
+                element.setAttribute('aria-expanded', 'true');
             }
         }
 
         function manualToggle() {
             const menu = document.getElementById("dropdown-menu");
             const btn = document.getElementById("btn-toggle");
-            if (menu.style.display === "none" || menu.style.display === "") {
-                menu.style.display = "block";
-                btn.innerText = "CLOSE";
-            } else {
-                menu.style.display = "none";
-                btn.innerText = "MENU";
-            }
+            const isHidden = menu.style.display === "none" || menu.style.display === "";
+            
+            menu.style.display = isHidden ? "block" : "none";
+            menu.setAttribute('aria-hidden', isHidden ? 'false' : 'true');
+            btn.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
         }
+
+        // Keyboard accessibility for FAQ
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                const target = e.target;
+                if (target.classList.contains('faq-header')) {
+                    e.preventDefault();
+                    toggleFaq(target);
+                }
+            }
+        });
     </script>
 </body>
 
