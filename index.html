@@ -55,7 +55,7 @@
         html { scroll-behavior: smooth; font-size: 16px; }
         body { background-color: var(--bg); color: var(--fg); font-family: var(--font-main); overflow-x: hidden; line-height: 1.5; -webkit-font-smoothing: antialiased; }
         a { text-decoration: none; color: inherit; }
-        button { border: none; background: none; font: inherit; cursor: pointer; }
+        button { border: none; background: none; font: inherit; cursor: pointer; color: inherit; }
         img { max-width: 100%; height: auto; display: block; }
         ul { list-style: none; }
 
@@ -163,15 +163,19 @@
         .stat-unit { font-size: 0.875rem; color: var(--muted-fg); margin-left: 0.25rem; }
         .stat-box:hover .stat-val { color: var(--accent); }
 
-        /* FAQ */
+        /* FAQ FIXED: High Contrast */
         .faq-item { border-top: 1px solid var(--border); }
-        .faq-header { width: 100%; text-align: left; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0.5rem 1.5rem 0; cursor: pointer; transition: background 0.2s; }
+        /* Force color white to prevent browser overrides */
+        .faq-header { width: 100%; text-align: left; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0.5rem 1.5rem 0; cursor: pointer; transition: background 0.2s; background: transparent; color: var(--fg); }
         .faq-header:hover { background: var(--muted); }
-        .faq-title { font-size: 1rem; font-weight: 700; text-transform: uppercase; }
+        .faq-title { font-size: 1rem; font-weight: 700; text-transform: uppercase; color: #FFFFFF; } /* Explicit White */
         .faq-icon { font-size: 1.5rem; font-weight: 700; color: var(--accent); transition: transform 0.3s; }
         .faq-body { height: 0; overflow: hidden; transition: height 0.3s ease-out; }
         .faq-content { padding: 0 1rem 2rem 1rem; font-family: var(--font-body); color: var(--muted-fg); line-height: 1.6; }
-        .faq-item.active .faq-header { background: var(--muted); color: var(--accent); }
+        
+        /* Active State */
+        .faq-item.active .faq-header { background: var(--muted); }
+        .faq-item.active .faq-title { color: var(--accent); } /* Yellow when active */
         .faq-item.active .faq-icon { transform: rotate(45deg); }
 
         /* Contact CTA */
