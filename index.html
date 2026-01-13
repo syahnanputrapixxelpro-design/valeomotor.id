@@ -10,8 +10,10 @@
     <meta name="keywords" content="showroom motor jakarta, jual moge jakarta, motor listrik premium, sportbike indonesia, valeomotor">
     <meta name="author" content="Valeomotor.id">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="theme-color" content="#09090B">
     <link rel="canonical" href="https://valeomotor.id/">
     
+    <!-- Open Graph / SEO -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://valeomotor.id/">
     <meta property="og:title" content="VALEOMOTOR.ID - Premium Motorcycle Showroom Jakarta">
@@ -28,216 +30,111 @@
     <meta name="twitter:description" content="Destinasi utama untuk motor premium bensin dan listrik di Jakarta Selatan. Unit 100% terkurasi.">
     <meta name="twitter:image" content="https://valeomotor.id/assets/img/og-image.jpg">
 
+    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
-    <meta name="theme-color" content="#09090B">
-    <meta name="msapplication-TileColor" content="#DFE104">
 
+    <!-- Performance: Preconnect & Preload -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <!-- LCP Optimization: Preload Hero Image -->
+    <link rel="preload" as="image" href="assets/img/motor/ApriliaRSV4Factory2.webp" fetchpriority="high">
 
+    <!-- JSON-LD Schema -->
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"MotorcycleDealer","name":"Valeomotor.id","image":"https://valeomotor.id/assets/img/motor/ApriliaRSV4Factory2.webp","description":"Showroom motor premium di Jakarta.","address":{"@type":"PostalAddress","streetAddress":"Jl. Otomotif Future No. 88","addressLocality":"Jakarta Selatan","postalCode":"12430","addressCountry":"ID"},"geo":{"@type":"GeoCoordinates","latitude":-6.2088,"longitude":106.8456},"url":"https://valeomotor.id","telephone":"+62895639068080","priceRange":"$$$"}</script>
-
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Apakah motor di Valeomotor memiliki surat resmi?","acceptedAnswer":{"@type":"Answer","text":"100% Resmi. Setiap motor dilengkapi BPKB, STNK, dan Faktur sah."}},{"@type":"Question","name":"Bagaimana garansi mesin di Valeomotor?","acceptedAnswer":{"@type":"Answer","text":"Unit Second garansi 6 bulan. Unit Baru garansi resmi pabrikan 3-5 tahun."}},{"@type":"Question","name":"Apa syarat test ride motor di Valeomotor?","acceptedAnswer":{"@type":"Answer","text":"Wajib membawa SIM C berlaku, KTP asli, dan perlengkapan safety lengkap."}},{"@type":"Question","name":"Apakah Valeomotor melayani pengiriman luar kota?","acceptedAnswer":{"@type":"Answer","text":"Bisa. Menggunakan towing khusus moge berasuransi ke seluruh Indonesia."}}]}</script>
 
-    <!-- Critical CSS untuk First Paint -->
+    <!-- Critical CSS: Mencegah Layout Shift & FOUC sebelum Tailwind Load -->
     <style>
-        *{box-sizing:border-box;margin:0;padding:0}
-        html{scroll-behavior:smooth}
-        body{background-color:#09090B;color:#FAFAFA;overflow-x:hidden;font-family:'Space Grotesk',system-ui,sans-serif}
-        ::selection{background-color:#DFE104;color:#000}
-        img{max-width:100%;height:auto}
-        .critical-nav{position:fixed;top:0;left:0;width:100%;z-index:999;background:#09090B;border-bottom:1px solid #3F3F46}
-        .critical-hero{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;overflow:hidden}
+        :root { --bg: #09090B; --fg: #FAFAFA; --accent: #DFE104; --border: #3F3F46; }
+        body { background-color: var(--bg); color: var(--fg); margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; overflow-x: hidden; }
+        /* Font Loading Optimization */
+        @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 700; font-display: swap; src: local('Space Grotesk'); }
+        /* Critical Layout */
+        .critical-nav { position: fixed; top: 0; left: 0; width: 100%; height: 70px; z-index: 999; background: var(--bg); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 1.5rem; }
+        .critical-hero { height: 100vh; width: 100%; position: relative; display: flex; flex-direction: column; justify-content: center; align-items: center; overflow: hidden; }
+        .critical-hero img { object-fit: cover; width: 100%; height: 100%; position: absolute; inset: 0; opacity: 0.4; }
+        /* Rendering Optimization */
+        .section-optimize { content-visibility: auto; contain-intrinsic-size: 1px 800px; }
+        img { max-width: 100%; height: auto; }
+        /* Utils */
+        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0; }
+        
+        /* Typography Clamps (Moved from Inline) */
+        .text-clamp-hero { font-size: clamp(3rem, 14vw, 18rem); line-height: 0.85; }
+        .text-clamp-h2 { font-size: clamp(2rem, 7vw, 6rem); line-height: 1; }
+        .text-clamp-num { font-size: clamp(3.5rem, 10vw, 8rem); }
+
+        /* Effects */
+        .stroke-text { -webkit-text-stroke: 1px #52525B; color: transparent; }
+        .hover-invert { transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .hover-invert:hover { background-color: #DFE104; color: #000000; border-color: #DFE104; }
+        .hover-invert:hover .child-text-title { color: #000000; }
+        .hover-invert:hover .child-text-muted { color: rgba(0, 0, 0, 0.7); }
+        .hover-invert:hover .child-border { border-color: rgba(0, 0, 0, 0.2); }
+        .hover-invert:hover .child-number { color: rgba(0, 0, 0, 0.1); }
+        
+        /* FAQ Styles */
+        .faq-body { height: 0; overflow: hidden; transition: height 0.3s ease-out; will-change: height; }
+        .faq-header { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+
+        /* Fixed Buttons */
+        #fixed-buttons-container { position: fixed; bottom: 30px; right: 30px; z-index: 2147483647; display: flex; flex-direction: column; gap: 12px; pointer-events: none; }
+        .btn-universal { pointer-events: auto; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); cursor: pointer; border: none; transition: transform 0.2s ease; will-change: transform; }
+        #back-top-trigger { background-color: #DFE104; color: #000; display: none; }
+        .wa-trigger { background-color: #25D366; text-decoration: none; }
+        .btn-universal:hover { transform: translateY(-5px); }
+
+        /* Contact Section */
+        #contact .hover-overlay { transform: translateY(100%); transition: transform 0.5s ease-in-out; will-change: transform; }
+        #contact a:hover .hover-overlay { transform: translateY(0); }
+        #contact a:hover .default-text { transform: scale(1.1); }
+        .default-text { transition: transform 0.5s ease; will-change: transform; }
     </style>
 
+    <!-- Tailwind Config - Minified & Defer Ready -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: {
-                        background: '#09090B',
-                        foreground: '#FAFAFA',
-                        muted: '#27272A',
-                        'muted-foreground': '#A1A1AA',
-                        accent: '#DFE104',
-                        border: '#3F3F46',
-                    },
-                    fontFamily: {
-                        sans: ['Space Grotesk', 'sans-serif'],
-                        body: ['Inter', 'sans-serif']
-                    },
-                    animation: {
-                        marquee: 'marquee 25s linear infinite',
-                        drop: 'drop 2s infinite'
-                    },
-                    keyframes: {
-                        marquee: {
-                            '0%': { transform: 'translateX(0%)' },
-                            '100%': { transform: 'translateX(-100%)' }
-                        },
-                        drop: {
-                            '0%': { top: '-50%' },
-                            '100%': { top: '100%' }
-                        }
-                    }
+                    colors: { background: '#09090B', foreground: '#FAFAFA', muted: '#27272A', 'muted-foreground': '#A1A1AA', accent: '#DFE104', border: '#3F3F46' },
+                    fontFamily: { sans: ['Space Grotesk', 'sans-serif'], body: ['Inter', 'sans-serif'] },
+                    animation: { marquee: 'marquee 25s linear infinite', drop: 'drop 2s infinite' },
+                    keyframes: { marquee: { '0%': { transform: 'translateX(0%)' }, '100%': { transform: 'translateX(-100%)' } }, drop: { '0%': { top: '-50%' }, '100%': { top: '100%' } } }
                 }
             }
         }
     </script>
 
+    <!-- Fonts: Load Async with Swap -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
-
-    <style>
-        /* Typography */
-        .text-clamp-hero {
-            font-size: clamp(3rem, 14vw, 18rem);
-            line-height: 0.85;
-        }
-
-        .text-clamp-h2 {
-            font-size: clamp(2rem, 7vw, 6rem);
-            line-height: 1;
-        }
-
-        .text-clamp-num {
-            font-size: clamp(3.5rem, 10vw, 8rem);
-        }
-
-        /* Effects */
-        .stroke-text {
-            -webkit-text-stroke: 1px #52525B;
-            color: transparent;
-        }
-
-        .hover-invert {
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .hover-invert:hover {
-            background-color: #DFE104;
-            color: #000000;
-            border-color: #DFE104;
-        }
-
-        .hover-invert:hover .child-text-title {
-            color: #000000;
-        }
-
-        .hover-invert:hover .child-text-muted {
-            color: rgba(0, 0, 0, 0.7);
-        }
-
-        .hover-invert:hover .child-border {
-            border-color: rgba(0, 0, 0, 0.2);
-        }
-
-        .hover-invert:hover .child-number {
-            color: rgba(0, 0, 0, 0.1);
-        }
-
-        /* FAQ Styles */
-        .faq-body {
-            height: 0;
-            overflow: hidden;
-            transition: height 0.4s ease-in-out;
-        }
-
-        .faq-header {
-            cursor: pointer;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        /* Fixed Buttons */
-        #fixed-buttons-container {
-            position: fixed !important;
-            bottom: 30px !important;
-            right: 30px !important;
-            z-index: 999999999 !important;
-            display: flex !important;
-            flex-direction: column !important;
-            gap: 12px !important;
-            pointer-events: none !important;
-        }
-
-        .btn-universal {
-            pointer-events: auto !important;
-            width: 60px !important;
-            height: 60px !important;
-            border-radius: 50% !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6) !important;
-            cursor: pointer !important;
-            border: none !important;
-            transition: all 0.2s ease !important;
-        }
-
-        #back-top-trigger {
-            background-color: #DFE104 !important;
-            color: #000 !important;
-            display: none;
-        }
-
-        .wa-trigger {
-            background-color: #25D366 !important;
-            text-decoration: none !important;
-        }
-
-        .btn-universal:hover {
-            transform: translateY(-5px) !important;
-        }
-
-        /* Contact Section Hover */
-        #contact .hover-overlay {
-            transform: translateY(100%);
-            transition: transform 0.5s ease-in-out;
-        }
-
-        #contact a:hover .hover-overlay {
-            transform: translateY(0);
-        }
-
-        #contact a:hover .default-text {
-            transform: scale(1.1);
-        }
-
-        .default-text {
-            transition: transform 0.5s ease;
-        }
-    </style>
-
-    <link rel="preload" as="image" href="assets/img/motor/ApriliaRSV4Factory2.webp" fetchpriority="high">
 </head>
 
 <body>
 
-    <nav class="fixed top-0 left-0 w-full z-[999] bg-background border-b border-border">
-        <div class="px-6 py-4 flex justify-between items-center relative z-[1000] bg-background">
+    <nav class="fixed top-0 left-0 w-full z-[999] bg-background border-b border-border critical-nav">
+        <div class="px-6 py-4 flex justify-between items-center relative z-[1000] bg-background w-full">
             <a href="index.html"
                 class="text-2xl font-bold tracking-tighter uppercase font-sans hover:text-accent transition-colors" aria-label="Valeomotor Home">
                 Valeomotor.id
             </a>
 
             <div class="hidden md:flex items-center gap-8">
-                <a href="about.html" class="text-xs font-bold uppercase tracking-[0.2em] hover:text-accent">Tentang
-                    Kami</a>
+                <a href="about.html" class="text-xs font-bold uppercase tracking-[0.2em] hover:text-accent">Tentang Kami</a>
                 <a href="motor.html" class="text-xs font-bold uppercase tracking-[0.2em] hover:text-accent">Motor</a>
-                <a href="gallery.html"
-                    class="text-xs font-bold uppercase tracking-[0.2em] hover:text-accent">Gallery</a>
+                <a href="gallery.html" class="text-xs font-bold uppercase tracking-[0.2em] hover:text-accent">Gallery</a>
                 <a href="blog.html" class="text-xs font-bold uppercase tracking-widest hover:text-accent">Blog</a>
             </div>
 
             <div class="flex items-center gap-4">
                 <a href="https://wa.me/62895639068080"
                     class="hidden md:block uppercase text-xs font-bold tracking-[0.2em] border border-white px-6 py-2 hover:bg-white hover:text-black transition-all">Kontak</a>
-                <button id="btn-toggle" onclick="manualToggle()" aria-label="Toggle Menu"
+                <button id="btn-toggle" aria-label="Toggle Menu"
                     class="md:hidden bg-accent text-black uppercase text-xs font-bold tracking-widest px-4 py-3 hover:bg-white transition-colors cursor-pointer border-none">
                     MENU
                 </button>
@@ -247,35 +144,28 @@
         <div id="dropdown-menu"
             style="display: none; position: absolute; top: 100%; left: 0; width: 100%; background-color: #1a1a1a; border-bottom: 2px solid #333; z-index: 990; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
             <div class="flex flex-col p-8 space-y-6">
-                <a href="about.html"
-                    class="text-xl font-bold uppercase tracking-widest text-white hover:text-accent block border-b border-gray-800 pb-2">Tentang
-                    Kami</a>
-                <a href="motor.html"
-                    class="text-xl font-bold uppercase tracking-widest text-white hover:text-accent block border-b border-gray-800 pb-2">Koleksi
-                    Motor</a>
-                <a href="gallery.html"
-                    class="text-xl font-bold uppercase tracking-widest text-accent block border-b border-gray-800 pb-2">Gallery</a>
-                <a href="blog.html"
-                    class="text-xl font-bold uppercase tracking-widest text-white hover:text-accent block border-b border-gray-800 pb-2">Blog
-                    & Info</a>
-                <a href="https://wa.me/62895639068080"
-                    class="text-xl font-bold uppercase tracking-widest text-accent hover:text-white block mt-2">Hubungi
-                    Kami</a>
+                <a href="about.html" class="text-xl font-bold uppercase tracking-widest text-white hover:text-accent block border-b border-gray-800 pb-2">Tentang Kami</a>
+                <a href="motor.html" class="text-xl font-bold uppercase tracking-widest text-white hover:text-accent block border-b border-gray-800 pb-2">Koleksi Motor</a>
+                <a href="gallery.html" class="text-xl font-bold uppercase tracking-widest text-accent block border-b border-gray-800 pb-2">Gallery</a>
+                <a href="blog.html" class="text-xl font-bold uppercase tracking-widest text-white hover:text-accent block border-b border-gray-800 pb-2">Blog & Info</a>
+                <a href="https://wa.me/62895639068080" class="text-xl font-bold uppercase tracking-widest text-accent hover:text-white block mt-2">Hubungi Kami</a>
             </div>
         </div>
     </nav>
 
-    <header id="hero"
-        class="relative h-screen flex flex-col justify-center items-center overflow-hidden border-b-2 border-border">
-        <div class="absolute inset-0 opacity-40 z-0 select-none">
+    <!-- Hero Section: LCP Optimized -->
+    <header id="hero" class="relative h-screen flex flex-col justify-center items-center overflow-hidden border-b-2 border-border critical-hero">
+        <div class="absolute inset-0 z-0 select-none bg-background">
+            <!-- Added width/height, fetchpriority, removed lazy loading for LCP -->
             <img src="assets/img/motor/ApriliaRSV4Factory2.webp" alt="Premium Aprilia RSV4 Factory di Showroom Valeomotor"
-                class="w-full h-full object-cover grayscale brightness-50" width="1920" height="1080" fetchpriority="high">
+                class="w-full h-full object-cover grayscale brightness-50 opacity-40" 
+                width="1920" height="1080" 
+                fetchpriority="high" decoding="async">
         </div>
         <div class="z-10 text-center flex flex-col items-center mix-blend-normal px-4">
-            <p class="uppercase tracking-[0.3em] md:tracking-[0.5em] text-[10px] md:text-sm mb-4 text-accent">Combustion
-                & Electric</p>
-            <h1 class="text-clamp-hero font-bold uppercase tracking-tighter" id="hero-text">UNLEASH<br><span
-                    class="text-accent">THE BEAST</span></h1>
+            <p class="uppercase tracking-[0.3em] md:tracking-[0.5em] text-[10px] md:text-sm mb-4 text-accent">Combustion & Electric</p>
+            <!-- Used CSS Class instead of inline JS dependency for text sizing -->
+            <h1 class="text-clamp-hero font-bold uppercase tracking-tighter" id="hero-text">UNLEASH<br><span class="text-accent">THE BEAST</span></h1>
         </div>
         <div class="absolute bottom-10 flex flex-col items-center gap-2 z-20">
             <div class="text-[10px] uppercase tracking-widest text-muted-foreground">Scroll to Explore</div>
@@ -285,22 +175,21 @@
         </div>
     </header>
 
-    <div class="bg-accent text-black py-3 md:py-6 border-y-2 border-black overflow-hidden relative z-20">
+    <!-- Marquee -->
+    <div class="bg-accent text-black py-3 md:py-6 border-y-2 border-black overflow-hidden relative z-20 section-optimize">
         <div class="flex whitespace-nowrap overflow-hidden relative h-8 md:h-12 items-center">
-            <div class="animate-marquee inline-block w-max">
+            <div class="animate-marquee inline-block w-max will-change-transform">
                 <span class="text-xl md:text-5xl font-bold uppercase tracking-tighter px-4">
-                    Sportbike • Cafe Racer • Electric • Big Bike • Custom Build • 250cc - 1000cc • Premium Stock •
-                    Adrenaline •
+                    Sportbike • Cafe Racer • Electric • Big Bike • Custom Build • 250cc - 1000cc • Premium Stock • Adrenaline •
                 </span>
                 <span class="text-xl md:text-5xl font-bold uppercase tracking-tighter px-4">
-                    Sportbike • Cafe Racer • Electric • Big Bike • Custom Build • 250cc - 1000cc • Premium Stock •
-                    Adrenaline •
+                    Sportbike • Cafe Racer • Electric • Big Bike • Custom Build • 250cc - 1000cc • Premium Stock • Adrenaline •
                 </span>
             </div>
         </div>
     </div>
 
-    <section id="about" class="pt-16 md:pt-32 pb-8 md:pb-16 px-6 md:px-12 border-b-2 border-border bg-background">
+    <section id="about" class="pt-16 md:pt-32 pb-8 md:pb-16 px-6 md:px-12 border-b-2 border-border bg-background section-optimize">
         <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12">
             <div class="lg:col-span-8">
                 <h2 class="text-clamp-h2 font-bold uppercase tracking-tighter mb-6 md:mb-8 reveal-text">
@@ -309,8 +198,7 @@
                 </h2>
             </div>
             <div class="lg:col-span-4 flex flex-col justify-end reveal-text">
-                <p
-                    class="font-body text-base md:text-xl text-muted-foreground leading-relaxed text-center md:text-left">
+                <p class="font-body text-base md:text-xl text-muted-foreground leading-relaxed text-center md:text-left">
                     Kami tidak membatasi adrenalin Anda. Dari raungan mesin 4-silinder hingga torsi instan motor
                     listrik. Valeomotor mengkurasi mesin terbaik untuk penakluk jalanan sejati.
                 </p>
@@ -326,99 +214,79 @@
         </div>
     </section>
 
-    <section id="products" class="py-16 md:py-32 px-4 md:px-12 bg-background relative z-10">
+    <section id="products" class="py-16 md:py-32 px-4 md:px-12 bg-background relative z-10 section-optimize">
         <div class="mb-12 md:mb-24 relative">
-            <h3
-                class="text-6xl md:text-9xl font-bold uppercase text-muted opacity-20 absolute -top-6 md:-top-20 left-0 pointer-events-none select-none">
-                Stock</h3>
-            <h2
-                class="text-4xl md:text-7xl font-bold uppercase tracking-tighter relative z-10 pl-4 border-l-4 border-accent">
-                Why <br>Valeo?</h2>
+            <h3 class="text-6xl md:text-9xl font-bold uppercase text-muted opacity-20 absolute -top-6 md:-top-20 left-0 pointer-events-none select-none">Stock</h3>
+            <h2 class="text-4xl md:text-7xl font-bold uppercase tracking-tighter relative z-10 pl-4 border-l-4 border-accent">Why <br>Valeo?</h2>
         </div>
 
         <div class="max-w-7xl mx-auto space-y-12 md:space-y-24 pb-10">
-            <div
-                class="group hover-invert border-2 border-border bg-background p-0 md:p-12 flex flex-col md:flex-row gap-6 md:gap-12 items-center relative">
-                <div
-                    class="w-full md:w-1/2 aspect-video md:aspect-auto h-auto md:h-[500px] overflow-hidden border-b-2 md:border-2 border-border grayscale group-hover:grayscale-0 transition-all duration-500 bg-muted relative">
-                    <img src="assets/img/service/precision.webp" alt="Koleksi Ducati Panigale V4S Valeomotor" loading="lazy" decoding="async" width="800" height="500"
-                        class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+            <!-- Item 1 -->
+            <div class="group hover-invert border-2 border-border bg-background p-0 md:p-12 flex flex-col md:flex-row gap-6 md:gap-12 items-center relative">
+                <div class="w-full md:w-1/2 aspect-video md:aspect-auto h-auto md:h-[500px] overflow-hidden border-b-2 md:border-2 border-border grayscale group-hover:grayscale-0 transition-all duration-500 bg-muted relative">
+                    <img src="assets/img/service/precision.webp" alt="Koleksi Ducati Panigale V4S Valeomotor" 
+                         loading="lazy" decoding="async" width="800" height="500"
+                         class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                 </div>
                 <div class="w-full md:w-1/2 p-6 md:p-0">
-                    <span
-                        class="text-5xl md:text-8xl font-bold text-muted transition-colors block mb-4 leading-none child-number">01</span>
-                    <h3 class="text-2xl md:text-4xl font-bold uppercase tracking-tighter mb-4 child-text-title">
-                        Precision Engines</h3>
-                    <p
-                        class="font-body text-base md:text-lg text-muted-foreground child-text-muted mb-6 leading-relaxed">
-                        Kami hanya menyediakan unit dengan kondisi mesin prima. Baik itu V-Twin klasik, Inline-4 modern,
-                        atau High-Voltage Electric Motor.
+                    <span class="text-5xl md:text-8xl font-bold text-muted transition-colors block mb-4 leading-none child-number">01</span>
+                    <h3 class="text-2xl md:text-4xl font-bold uppercase tracking-tighter mb-4 child-text-title">Precision Engines</h3>
+                    <p class="font-body text-base md:text-lg text-muted-foreground child-text-muted mb-6 leading-relaxed">
+                        Kami hanya menyediakan unit dengan kondisi mesin prima. Baik itu V-Twin klasik, Inline-4 modern, atau High-Voltage Electric Motor.
                     </p>
                     <ul class="space-y-3 border-t-2 border-border pt-4 child-border w-full">
-                        <li
-                            class="flex justify-between items-center text-sm md:text-base uppercase font-bold tracking-tight child-text-title">
+                        <li class="flex justify-between items-center text-sm md:text-base uppercase font-bold tracking-tight child-text-title">
                             <span>Standard</span><span>QC Passed</span>
                         </li>
-                        <li
-                            class="flex justify-between items-center text-sm md:text-base uppercase font-bold tracking-tight child-text-title">
+                        <li class="flex justify-between items-center text-sm md:text-base uppercase font-bold tracking-tight child-text-title">
                             <span>Dyno Test</span><span>Certified</span>
                         </li>
                     </ul>
                 </div>
             </div>
-            <div
-                class="group hover-invert border-2 border-border bg-background p-0 md:p-12 flex flex-col md:flex-row gap-6 md:gap-12 items-center relative">
-                <div
-                    class="w-full md:w-1/2 aspect-video md:aspect-auto h-auto md:h-[500px] overflow-hidden border-b-2 md:border-2 border-border grayscale group-hover:grayscale-0 transition-all duration-500 bg-muted relative">
-                    <img src="assets/img/service/enggine.webp" alt="Honda CBR1000RR-R SP Premium Stock" loading="lazy" decoding="async" width="800" height="500"
-                        class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+            
+            <!-- Item 2 -->
+            <div class="group hover-invert border-2 border-border bg-background p-0 md:p-12 flex flex-col md:flex-row gap-6 md:gap-12 items-center relative">
+                <div class="w-full md:w-1/2 aspect-video md:aspect-auto h-auto md:h-[500px] overflow-hidden border-b-2 md:border-2 border-border grayscale group-hover:grayscale-0 transition-all duration-500 bg-muted relative">
+                    <img src="assets/img/service/enggine.webp" alt="Honda CBR1000RR-R SP Premium Stock" 
+                         loading="lazy" decoding="async" width="800" height="500"
+                         class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                 </div>
                 <div class="w-full md:w-1/2 p-6 md:p-0">
-                    <span
-                        class="text-5xl md:text-8xl font-bold text-muted transition-colors block mb-4 leading-none child-number">02</span>
-                    <h3 class="text-2xl md:text-4xl font-bold uppercase tracking-tighter mb-4 child-text-title">Premium
-                        Build</h3>
-                    <p
-                        class="font-body text-base md:text-lg text-muted-foreground child-text-muted mb-6 leading-relaxed">
-                        Koleksi kami meliputi brand ternama dengan material eksotis. Carbon fiber, Titanium, dan rangka
-                        baja yang presisi.
+                    <span class="text-5xl md:text-8xl font-bold text-muted transition-colors block mb-4 leading-none child-number">02</span>
+                    <h3 class="text-2xl md:text-4xl font-bold uppercase tracking-tighter mb-4 child-text-title">Premium Build</h3>
+                    <p class="font-body text-base md:text-lg text-muted-foreground child-text-muted mb-6 leading-relaxed">
+                        Koleksi kami meliputi brand ternama dengan material eksotis. Carbon fiber, Titanium, dan rangka baja yang presisi.
                     </p>
                     <ul class="space-y-3 border-t-2 border-border pt-4 child-border w-full">
-                        <li
-                            class="flex justify-between items-center text-sm md:text-base uppercase font-bold tracking-tight child-text-title">
+                        <li class="flex justify-between items-center text-sm md:text-base uppercase font-bold tracking-tight child-text-title">
                             <span>Brands</span><span>Honda, Ducati</span>
                         </li>
-                        <li
-                            class="flex justify-between items-center text-sm md:text-base uppercase font-bold tracking-tight child-text-title">
+                        <li class="flex justify-between items-center text-sm md:text-base uppercase font-bold tracking-tight child-text-title">
                             <span>Type</span><span>CBU & CKD</span>
                         </li>
                     </ul>
                 </div>
             </div>
-            <div
-                class="group hover-invert border-2 border-border bg-background p-0 md:p-12 flex flex-col md:flex-row gap-6 md:gap-12 items-center relative">
-                <div
-                    class="w-full md:w-1/2 aspect-video md:aspect-auto h-auto md:h-[500px] overflow-hidden border-b-2 md:border-2 border-border grayscale group-hover:grayscale-0 transition-all duration-500 bg-muted relative">
-                    <img src="assets/img/service/servicemotor.webp" alt="Kawasaki H2R High Performance Unit" loading="lazy" decoding="async" width="800" height="500"
-                        class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+
+            <!-- Item 3 -->
+            <div class="group hover-invert border-2 border-border bg-background p-0 md:p-12 flex flex-col md:flex-row gap-6 md:gap-12 items-center relative">
+                <div class="w-full md:w-1/2 aspect-video md:aspect-auto h-auto md:h-[500px] overflow-hidden border-b-2 md:border-2 border-border grayscale group-hover:grayscale-0 transition-all duration-500 bg-muted relative">
+                    <img src="assets/img/service/servicemotor.webp" alt="Kawasaki H2R High Performance Unit" 
+                         loading="lazy" decoding="async" width="800" height="500"
+                         class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                 </div>
                 <div class="w-full md:w-1/2 p-6 md:p-0">
-                    <span
-                        class="text-5xl md:text-8xl font-bold text-muted transition-colors block mb-4 leading-none child-number">03</span>
-                    <h3 class="text-2xl md:text-4xl font-bold uppercase tracking-tighter mb-4 child-text-title">Full
-                        Service</h3>
-                    <p
-                        class="font-body text-base md:text-lg text-muted-foreground child-text-muted mb-6 leading-relaxed">
-                        Lebih dari sekadar jual beli. Kami menyediakan layanan detailing, custom modification, dan
-                        maintenance berkala.
+                    <span class="text-5xl md:text-8xl font-bold text-muted transition-colors block mb-4 leading-none child-number">03</span>
+                    <h3 class="text-2xl md:text-4xl font-bold uppercase tracking-tighter mb-4 child-text-title">Full Service</h3>
+                    <p class="font-body text-base md:text-lg text-muted-foreground child-text-muted mb-6 leading-relaxed">
+                        Lebih dari sekadar jual beli. Kami menyediakan layanan detailing, custom modification, dan maintenance berkala.
                     </p>
                     <ul class="space-y-3 border-t-2 border-border pt-4 child-border w-full">
-                        <li
-                            class="flex justify-between items-center text-sm md:text-base uppercase font-bold tracking-tight child-text-title">
+                        <li class="flex justify-between items-center text-sm md:text-base uppercase font-bold tracking-tight child-text-title">
                             <span>Detailing</span><span>Included</span>
                         </li>
-                        <li
-                            class="flex justify-between items-center text-sm md:text-base uppercase font-bold tracking-tight child-text-title">
+                        <li class="flex justify-between items-center text-sm md:text-base uppercase font-bold tracking-tight child-text-title">
                             <span>Towing</span><span>Available</span>
                         </li>
                     </ul>
@@ -427,149 +295,120 @@
         </div>
     </section>
 
-    <section id="gallery" class="py-16 md:py-32 px-4 bg-background border-t-2 border-border relative z-20">
+    <section id="gallery" class="py-16 md:py-32 px-4 bg-background border-t-2 border-border relative z-20 section-optimize">
         <div class="max-w-[95vw] mx-auto">
             <h2 class="text-clamp-h2 font-bold uppercase tracking-tighter mb-10 md:mb-20 text-center reveal-text">
                 Visual <span class="text-accent">Gallery</span>
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div class="group relative aspect-video md:aspect-[16/9] overflow-hidden border-2 border-border">
-                    <img src="assets/img/motor/triumphthuxtonrs.webp" alt="Classic Soul Triumph at Valeomotor" loading="lazy" decoding="async" width="800" height="450"
-                        class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110">
-                    <div
-                        class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <span class="text-xl md:text-3xl font-bold uppercase tracking-tighter text-accent">Classic
-                            Soul</span>
+                <div class="group relative aspect-video md:aspect-[16/9] overflow-hidden border-2 border-border bg-muted">
+                    <img src="assets/img/motor/triumphthuxtonrs.webp" alt="Classic Soul Triumph at Valeomotor" 
+                         loading="lazy" decoding="async" width="800" height="450"
+                         class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <span class="text-xl md:text-3xl font-bold uppercase tracking-tighter text-accent">Classic Soul</span>
                     </div>
                 </div>
-                <div class="group relative aspect-video md:aspect-[16/9] overflow-hidden border-2 border-border">
-                    <img src="assets/img/motor/ducatipanigalev4s.webp" alt="Modern Speed Ducati Gallery" loading="lazy" decoding="async" width="800" height="450"
-                        class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110">
-                    <div
-                        class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <span class="text-xl md:text-3xl font-bold uppercase tracking-tighter text-accent">Modern
-                            Speed</span>
+                <div class="group relative aspect-video md:aspect-[16/9] overflow-hidden border-2 border-border bg-muted">
+                    <img src="assets/img/motor/ducatipanigalev4s.webp" alt="Modern Speed Ducati Gallery" 
+                         loading="lazy" decoding="async" width="800" height="450"
+                         class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <span class="text-xl md:text-3xl font-bold uppercase tracking-tighter text-accent">Modern Speed</span>
                     </div>
                 </div>
-                <div
-                    class="group relative aspect-video md:aspect-[21/9] md:col-span-2 overflow-hidden border-2 border-border">
-                    <img src="assets/img/motor/KawasakiNinjaH2.webp" alt="The Garage Valeomotor Showroom Jakarta" loading="lazy" decoding="async" width="1600" height="686"
-                        class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110">
-                    <div
-                        class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <span class="text-2xl md:text-5xl font-bold uppercase tracking-tighter text-accent">The
-                            Garage</span>
+                <div class="group relative aspect-video md:aspect-[21/9] md:col-span-2 overflow-hidden border-2 border-border bg-muted">
+                    <img src="assets/img/motor/KawasakiNinjaH2.webp" alt="The Garage Valeomotor Showroom Jakarta" 
+                         loading="lazy" decoding="async" width="1600" height="686"
+                         class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <span class="text-2xl md:text-5xl font-bold uppercase tracking-tighter text-accent">The Garage</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-16 md:py-32 px-4 border-t-2 border-border bg-background relative z-20">
+    <section class="py-16 md:py-32 px-4 border-t-2 border-border bg-background relative z-20 section-optimize">
         <h2 class="text-center text-xs uppercase tracking-[0.5em] text-accent mb-12 md:mb-20">Performance Data</h2>
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-px bg-border max-w-[95vw] mx-auto border-2 border-border">
+            <!-- Items Data -->
             <div class="bg-background p-6 md:p-12 group hover:bg-muted transition-colors">
-                <h4 class="text-[10px] md:text-xs uppercase tracking-widest text-muted-foreground mb-2 md:mb-4">Max
-                    Speed</h4>
-                <div
-                    class="text-3xl md:text-6xl font-bold leading-none tracking-tighter text-white group-hover:text-accent">
+                <h4 class="text-[10px] md:text-xs uppercase tracking-widest text-muted-foreground mb-2 md:mb-4">Max Speed</h4>
+                <div class="text-3xl md:text-6xl font-bold leading-none tracking-tighter text-white group-hover:text-accent">
                     299<span class="text-sm md:text-xl text-muted-foreground ml-1">KM/H</span></div>
             </div>
             <div class="bg-background p-6 md:p-12 group hover:bg-muted transition-colors">
-                <h4 class="text-[10px] md:text-xs uppercase tracking-widest text-muted-foreground mb-2 md:mb-4">Units
-                    Sold</h4>
-                <div
-                    class="text-3xl md:text-6xl font-bold leading-none tracking-tighter text-white group-hover:text-accent">
+                <h4 class="text-[10px] md:text-xs uppercase tracking-widest text-muted-foreground mb-2 md:mb-4">Units Sold</h4>
+                <div class="text-3xl md:text-6xl font-bold leading-none tracking-tighter text-white group-hover:text-accent">
                     500<span class="text-sm md:text-xl text-muted-foreground ml-1">+</span></div>
             </div>
             <div class="bg-background p-6 md:p-12 group hover:bg-muted transition-colors">
-                <h4 class="text-[10px] md:text-xs uppercase tracking-widest text-muted-foreground mb-2 md:mb-4">0-100
-                    KM/H</h4>
-                <div
-                    class="text-3xl md:text-6xl font-bold leading-none tracking-tighter text-white group-hover:text-accent">
+                <h4 class="text-[10px] md:text-xs uppercase tracking-widest text-muted-foreground mb-2 md:mb-4">0-100 KM/H</h4>
+                <div class="text-3xl md:text-6xl font-bold leading-none tracking-tighter text-white group-hover:text-accent">
                     3.2<span class="text-sm md:text-xl text-muted-foreground ml-1">SEC</span></div>
             </div>
             <div class="bg-background p-6 md:p-12 group hover:bg-muted transition-colors">
-                <h4 class="text-[10px] md:text-xs uppercase tracking-widest text-muted-foreground mb-2 md:mb-4">Torque
-                </h4>
-                <div
-                    class="text-3xl md:text-6xl font-bold leading-none tracking-tighter text-white group-hover:text-accent">
+                <h4 class="text-[10px] md:text-xs uppercase tracking-widest text-muted-foreground mb-2 md:mb-4">Torque</h4>
+                <div class="text-3xl md:text-6xl font-bold leading-none tracking-tighter text-white group-hover:text-accent">
                     150<span class="text-sm md:text-xl text-muted-foreground ml-1">NM</span></div>
             </div>
         </div>
     </section>
 
-    <section id="blog" class="py-16 md:py-32 px-6 md:px-12 bg-background border-t-2 border-border relative z-20">
+    <section id="blog" class="py-16 md:py-32 px-6 md:px-12 bg-background border-t-2 border-border relative z-20 section-optimize">
         <div class="max-w-4xl mx-auto">
-            <h2
-                class="text-clamp-h2 font-bold uppercase tracking-tighter mb-10 md:mb-16 text-center md:text-left reveal-text">
+            <h2 class="text-clamp-h2 font-bold uppercase tracking-tighter mb-10 md:mb-16 text-center md:text-left reveal-text">
                 Common <span class="text-accent">Q&A</span>
             </h2>
             <div class="space-y-0" id="faq-container">
+                <!-- FAQ Items -->
                 <div class="faq-item border-t-2 border-border group overflow-hidden">
-                    <div class="faq-header flex justify-between items-center py-6 md:py-8 pr-4 hover:bg-muted transition-colors duration-200 select-none"
-                        onclick="toggleFaq(this)">
-                        <h3 class="text-base md:text-2xl font-bold uppercase tracking-tight pl-2"><span
-                                class="text-accent mr-4">01.</span> Legalitas & Surat?</h3>
-                        <div
-                            class="faq-icon text-2xl md:text-3xl font-bold text-accent transition-transform duration-300 origin-center">
-                            +</div>
-                    </div>
+                    <button class="faq-header w-full text-left flex justify-between items-center py-6 md:py-8 pr-4 hover:bg-muted transition-colors duration-200 select-none bg-transparent border-none"
+                        onclick="toggleFaq(this)" aria-expanded="false">
+                        <span class="text-base md:text-2xl font-bold uppercase tracking-tight pl-2 block"><span class="text-accent mr-4">01.</span> Legalitas & Surat?</span>
+                        <span class="faq-icon text-2xl md:text-3xl font-bold text-accent transition-transform duration-300 origin-center block">+</span>
+                    </button>
                     <div class="faq-body">
                         <div class="pb-8 pl-2 md:pl-12 pr-4">
-                            <p class="font-body text-base md:text-lg text-muted-foreground leading-relaxed"><strong>100%
-                                    Resmi.</strong> Kami tidak menjual unit "bodong". Setiap motor dilengkapi BPKB,
-                                STNK, dan Faktur sah.</p>
+                            <p class="font-body text-base md:text-lg text-muted-foreground leading-relaxed"><strong>100% Resmi.</strong> Kami tidak menjual unit "bodong". Setiap motor dilengkapi BPKB, STNK, dan Faktur sah.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Repeat for other FAQs (structure preserved) -->
+                <div class="faq-item border-t-2 border-border group overflow-hidden">
+                    <button class="faq-header w-full text-left flex justify-between items-center py-6 md:py-8 pr-4 hover:bg-muted transition-colors duration-200 select-none bg-transparent border-none"
+                        onclick="toggleFaq(this)" aria-expanded="false">
+                        <span class="text-base md:text-2xl font-bold uppercase tracking-tight pl-2 block"><span class="text-accent mr-4">02.</span> Garansi Mesin?</span>
+                        <span class="faq-icon text-2xl md:text-3xl font-bold text-accent transition-transform duration-300 origin-center block">+</span>
+                    </button>
+                    <div class="faq-body">
+                        <div class="pb-8 pl-2 md:pl-12 pr-4">
+                            <p class="font-body text-base md:text-lg text-muted-foreground leading-relaxed">Unit <strong>Second</strong> garansi 6 bulan. Unit <strong>Baru</strong> garansi resmi pabrikan 3-5 tahun.</p>
                         </div>
                     </div>
                 </div>
                 <div class="faq-item border-t-2 border-border group overflow-hidden">
-                    <div class="faq-header flex justify-between items-center py-6 md:py-8 pr-4 hover:bg-muted transition-colors duration-200 select-none"
-                        onclick="toggleFaq(this)">
-                        <h3 class="text-base md:text-2xl font-bold uppercase tracking-tight pl-2"><span
-                                class="text-accent mr-4">02.</span> Garansi Mesin?</h3>
-                        <div
-                            class="faq-icon text-2xl md:text-3xl font-bold text-accent transition-transform duration-300 origin-center">
-                            +</div>
-                    </div>
+                    <button class="faq-header w-full text-left flex justify-between items-center py-6 md:py-8 pr-4 hover:bg-muted transition-colors duration-200 select-none bg-transparent border-none"
+                        onclick="toggleFaq(this)" aria-expanded="false">
+                        <span class="text-base md:text-2xl font-bold uppercase tracking-tight pl-2 block"><span class="text-accent mr-4">03.</span> Syarat Test Ride?</span>
+                        <span class="faq-icon text-2xl md:text-3xl font-bold text-accent transition-transform duration-300 origin-center block">+</span>
+                    </button>
                     <div class="faq-body">
                         <div class="pb-8 pl-2 md:pl-12 pr-4">
-                            <p class="font-body text-base md:text-lg text-muted-foreground leading-relaxed">Unit
-                                <strong>Second</strong> garansi 6 bulan. Unit <strong>Baru</strong> garansi resmi
-                                pabrikan 3-5 tahun.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="faq-item border-t-2 border-border group overflow-hidden">
-                    <div class="faq-header flex justify-between items-center py-6 md:py-8 pr-4 hover:bg-muted transition-colors duration-200 select-none"
-                        onclick="toggleFaq(this)">
-                        <h3 class="text-base md:text-2xl font-bold uppercase tracking-tight pl-2"><span
-                                class="text-accent mr-4">03.</span> Syarat Test Ride?</h3>
-                        <div
-                            class="faq-icon text-2xl md:text-3xl font-bold text-accent transition-transform duration-300 origin-center">
-                            +</div>
-                    </div>
-                    <div class="faq-body">
-                        <div class="pb-8 pl-2 md:pl-12 pr-4">
-                            <p class="font-body text-base md:text-lg text-muted-foreground leading-relaxed">Wajib
-                                membawa <strong>SIM C</strong> berlaku, KTP asli, dan perlengkapan safety lengkap.</p>
+                            <p class="font-body text-base md:text-lg text-muted-foreground leading-relaxed">Wajib membawa <strong>SIM C</strong> berlaku, KTP asli, dan perlengkapan safety lengkap.</p>
                         </div>
                     </div>
                 </div>
                 <div class="faq-item border-y-2 border-border group overflow-hidden">
-                    <div class="faq-header flex justify-between items-center py-6 md:py-8 pr-4 hover:bg-muted transition-colors duration-200 select-none"
-                        onclick="toggleFaq(this)">
-                        <h3 class="text-base md:text-2xl font-bold uppercase tracking-tight pl-2"><span
-                                class="text-accent mr-4">04.</span> Pengiriman Luar Kota?</h3>
-                        <div
-                            class="faq-icon text-2xl md:text-3xl font-bold text-accent transition-transform duration-300 origin-center">
-                            +</div>
-                    </div>
+                    <button class="faq-header w-full text-left flex justify-between items-center py-6 md:py-8 pr-4 hover:bg-muted transition-colors duration-200 select-none bg-transparent border-none"
+                        onclick="toggleFaq(this)" aria-expanded="false">
+                        <span class="text-base md:text-2xl font-bold uppercase tracking-tight pl-2 block"><span class="text-accent mr-4">04.</span> Pengiriman Luar Kota?</span>
+                        <span class="faq-icon text-2xl md:text-3xl font-bold text-accent transition-transform duration-300 origin-center block">+</span>
+                    </button>
                     <div class="faq-body">
                         <div class="pb-8 pl-2 md:pl-12 pr-4">
-                            <p class="font-body text-base md:text-lg text-muted-foreground leading-relaxed">Bisa.
-                                Menggunakan towing khusus moge berasuransi ke seluruh Indonesia.</p>
+                            <p class="font-body text-base md:text-lg text-muted-foreground leading-relaxed">Bisa. Menggunakan towing khusus moge berasuransi ke seluruh Indonesia.</p>
                         </div>
                     </div>
                 </div>
@@ -577,36 +416,29 @@
         </div>
     </section>
 
-    <section id="contact" class="py-0 border-t-2 border-border">
+    <section id="contact" class="py-0 border-t-2 border-border section-optimize">
         <a href="https://wa.me/62895639068080"
             class="group block relative overflow-hidden h-[40vh] md:h-[60vh] flex items-center justify-center bg-accent cursor-pointer" aria-label="WhatsApp Contact Valeomotor">
-            <div
-                class="absolute inset-0 flex items-center justify-center z-0 transition-transform duration-500 group-hover:scale-110 default-text">
+            <div class="absolute inset-0 flex items-center justify-center z-0 transition-transform duration-500 group-hover:scale-110 default-text">
                 <span class="text-5xl md:text-clamp-h2 text-black font-bold uppercase tracking-tighter">Ride Now</span>
             </div>
-            <div
-                class="absolute inset-0 bg-black translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out z-10 flex flex-col items-center justify-center hover-overlay">
-                <span class="text-5xl md:text-clamp-h2 text-white font-bold uppercase tracking-tighter">Book
-                    Visit</span>
+            <div class="absolute inset-0 bg-black translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out z-10 flex flex-col items-center justify-center hover-overlay">
+                <span class="text-5xl md:text-clamp-h2 text-white font-bold uppercase tracking-tighter">Book Visit</span>
             </div>
         </a>
     </section>
 
-    <footer class="bg-background text-white py-20 px-6 border-t-2 border-border relative overflow-hidden w-full">
-        <div
-            class="absolute -bottom-10 -left-10 text-[20vw] font-bold text-muted opacity-5 pointer-events-none select-none leading-none z-0">
-            VALEO</div>
+    <!-- Footer -->
+    <footer class="bg-background text-white py-20 px-6 border-t-2 border-border relative overflow-hidden w-full section-optimize">
+        <div class="absolute -bottom-10 -left-10 text-[20vw] font-bold text-muted opacity-5 pointer-events-none select-none leading-none z-0">VALEO</div>
 
         <div class="max-w-[95vw] mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 relative z-10">
             <div class="space-y-8">
                 <a href="#" class="block group">
-                    <h2
-                        class="text-5xl md:text-7xl font-bold uppercase tracking-tighter group-hover:text-accent transition-colors duration-500">
-                        Valeo<br>Motor.id</h2>
+                    <h2 class="text-5xl md:text-7xl font-bold uppercase tracking-tighter group-hover:text-accent transition-colors duration-500">Valeo<br>Motor.id</h2>
                 </a>
                 <p class="text-lg text-muted-foreground leading-relaxed font-body max-w-sm">
-                    Kurator mesin beradrenalin tinggi. Mempertemukan pengendara sejati dengan mahakarya kejuruteraan,
-                    bensin maupun listrik.
+                    Kurator mesin beradrenalin tinggi. Mempertemukan pengendara sejati dengan mahakarya kejuruteraan, bensin maupun listrik.
                 </p>
                 <div>
                     <p class="text-xs uppercase tracking-[0.2em] text-accent mb-1">Established</p>
@@ -617,18 +449,10 @@
             <div class="space-y-8 md:pl-12 border-l-0 md:border-l border-border/30">
                 <h4 class="text-sm uppercase tracking-[0.2em] text-accent mb-6">Explore</h4>
                 <ul class="space-y-4">
-                    <li><a href="about.html"
-                            class="text-2xl font-bold uppercase tracking-tight hover:text-accent hover:pl-2 transition-all duration-300 block">TENTANG
-                            KAMI</a></li>
-                    <li><a href="motor.html"
-                            class="text-2xl font-bold uppercase tracking-tight hover:text-accent hover:pl-2 transition-all duration-300 block">KOLEKSI
-                            MOTOR</a></li>
-                    <li><a href="gallery.html"
-                            class="text-2xl font-bold uppercase tracking-tight hover:text-accent hover:pl-2 transition-all duration-300 block">VISUAL
-                            GALLERY</a></li>
-                    <li><a href="blog.html"
-                            class="text-2xl font-bold uppercase tracking-tight hover:text-accent hover:pl-2 transition-all duration-300 block">BLOG
-                            & FAQ</a></li>
+                    <li><a href="about.html" class="text-2xl font-bold uppercase tracking-tight hover:text-accent hover:pl-2 transition-all duration-300 block">TENTANG KAMI</a></li>
+                    <li><a href="motor.html" class="text-2xl font-bold uppercase tracking-tight hover:text-accent hover:pl-2 transition-all duration-300 block">KOLEKSI MOTOR</a></li>
+                    <li><a href="gallery.html" class="text-2xl font-bold uppercase tracking-tight hover:text-accent hover:pl-2 transition-all duration-300 block">VISUAL GALLERY</a></li>
+                    <li><a href="blog.html" class="text-2xl font-bold uppercase tracking-tight hover:text-accent hover:pl-2 transition-all duration-300 block">BLOG & FAQ</a></li>
                 </ul>
             </div>
 
@@ -642,14 +466,14 @@
                         <p class="hover:text-accent cursor-pointer transition-colors block">info@valeomotor.id</p>
                     </address>
                 </div>
+                <!-- Social Media -->
                 <div>
                     <h4 class="text-sm uppercase tracking-[0.2em] text-accent mb-6">Follow Us</h4>
                     <div class="flex gap-4">
                         <a href="https://www.instagram.com/" aria-label="Instagram"
                             class="w-12 h-12 border border-border flex items-center justify-center rounded-full hover:bg-accent hover:text-black hover:scale-110 transition-all duration-300 group">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
                                 <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
                                 <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
@@ -658,17 +482,14 @@
                         <a href="https://wa.me/62895639068080" aria-label="WhatsApp"
                             class="w-12 h-12 border border-border flex items-center justify-center rounded-full hover:bg-[#25D366] hover:text-white hover:scale-110 transition-all duration-300 group">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path
-                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                             </svg>
                         </a>
                         <a href="https://www.facebook.com/" aria-label="Facebook"
                             class="w-12 h-12 border border-border flex items-center justify-center rounded-full hover:bg-[#1877F2] hover:text-white hover:scale-110 transition-all duration-300 group">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
                             </svg>
                         </a>
@@ -677,8 +498,7 @@
             </div>
         </div>
 
-        <div
-            class="max-w-[95vw] mx-auto mt-24 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground relative z-10">
+        <div class="max-w-[95vw] mx-auto mt-24 pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground relative z-10">
             <p>&copy; 2026 Valeomotor. All rights reserved.</p>
             <p class="uppercase tracking-widest hidden md:block opacity-50">Built for Speed / Designed for Soul</p>
         </div>
@@ -703,19 +523,20 @@
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const btnLayer = document.getElementById('fixed-buttons-container');
-            document.body.appendChild(btnLayer);
+            if(btnLayer) document.body.appendChild(btnLayer);
 
-            // BACKTOP VISIBILITY
             const btt = document.getElementById('back-top-trigger');
             let ticking = false;
             
+            // Passive listener for scroll performance
             window.addEventListener('scroll', function() {
                 if (!ticking) {
                     window.requestAnimationFrame(function() {
-                        if (document.body.scrollTop > 450 || document.documentElement.scrollTop > 450) {
-                            btt.style.display = "flex";
+                        const top = window.scrollY || document.documentElement.scrollTop;
+                        if (top > 450) {
+                            if(btt) btt.style.display = "flex";
                         } else {
-                            btt.style.display = "none";
+                            if(btt) btt.style.display = "none";
                         }
                         ticking = false;
                     });
@@ -723,22 +544,44 @@
                 }
             }, { passive: true });
 
-            btt.onclick = function() {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            };
+            if(btt) {
+                btt.onclick = function() {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                };
+            }
+
+            // Menu Toggle
+            const btnToggle = document.getElementById("btn-toggle");
+            if(btnToggle) {
+                btnToggle.onclick = function() {
+                    const menu = document.getElementById("dropdown-menu");
+                    if (menu.style.display === "none" || menu.style.display === "") {
+                        menu.style.display = "block";
+                        btnToggle.textContent = "CLOSE";
+                    } else {
+                        menu.style.display = "none";
+                        btnToggle.textContent = "MENU";
+                    }
+                }
+            }
         });
 
         function toggleFaq(element) {
             const parent = element.parentElement;
             const body = parent.querySelector('.faq-body');
-            const icon = element.querySelector('.faq-icon');
+            const icon = parent.querySelector('.faq-icon');
             const isOpen = parent.classList.contains('active');
 
+            // Close others
             document.querySelectorAll('.faq-item').forEach(item => {
-                item.classList.remove('active');
-                item.querySelector('.faq-body').style.height = '0px';
-                item.querySelector('.faq-icon').style.transform = 'rotate(0deg)';
-                item.querySelector('.faq-header').classList.remove('bg-muted', 'text-accent');
+                if(item !== parent) {
+                    item.classList.remove('active');
+                    item.querySelector('.faq-body').style.height = '0px';
+                    item.querySelector('.faq-icon').style.transform = 'rotate(0deg)';
+                    const hdr = item.querySelector('.faq-header');
+                    hdr.classList.remove('bg-muted', 'text-accent');
+                    hdr.setAttribute('aria-expanded', 'false');
+                }
             });
 
             if (!isOpen) {
@@ -746,21 +589,15 @@
                 body.style.height = body.scrollHeight + "px";
                 icon.style.transform = 'rotate(45deg)';
                 element.classList.add('bg-muted', 'text-accent');
-            }
-        }
-
-        function manualToggle() {
-            const menu = document.getElementById("dropdown-menu");
-            const btn = document.getElementById("btn-toggle");
-            if (menu.style.display === "none" || menu.style.display === "") {
-                menu.style.display = "block";
-                btn.textContent = "CLOSE";
+                element.setAttribute('aria-expanded', 'true');
             } else {
-                menu.style.display = "none";
-                btn.textContent = "MENU";
+                parent.classList.remove('active');
+                body.style.height = '0px';
+                icon.style.transform = 'rotate(0deg)';
+                element.classList.remove('bg-muted', 'text-accent');
+                element.setAttribute('aria-expanded', 'false');
             }
         }
     </script>
 </body>
-
 </html>
